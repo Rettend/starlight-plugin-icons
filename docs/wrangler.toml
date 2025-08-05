@@ -1,6 +1,6 @@
 name = "starlight-plugin-icons"
 compatibility_date = "2025-04-01"
-routes = [ { pattern = "docs.rettend.me", custom_domain = true } ]
+routes = [ { pattern = "docs.rettend.me/starlight-plugin-icons", custom_domain = true } ]
 
 [assets]
 directory = "./dist"
