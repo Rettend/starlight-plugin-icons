@@ -1,7 +1,6 @@
 // @ts-check
 import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
-import relativeLinks from 'astro-relative-links'
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 import { pluginIcon } from './src/lib/expressive-code.mjs'
@@ -39,7 +38,6 @@ export default defineConfig({
   },
   integrations: [
     UnoCSS(),
-    relativeLinks(),
     starlight({
       title: 'starlight-plugin-icons',
       social: [
