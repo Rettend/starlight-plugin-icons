@@ -28,9 +28,8 @@ function addIcons(sidebar) {
 }
 
 export default defineConfig({
-  site: 'https://docs.rettend.me',
-  base: '/starlight-plugin-icons',
   vite: {
+    base: '',
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./src', import.meta.url)),
