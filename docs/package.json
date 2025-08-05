@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "bun@1.2.20",
+  "packageManager": "bun@1.2.19",
   "scripts": {
     "predev": "bun run scripts/generate-icon-safelist.mjs",
     "dev": "astro dev",

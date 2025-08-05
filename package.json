@@ -2,7 +2,7 @@
   "name": "starlight-plugin-icons",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "bun@1.2.20",
+  "packageManager": "bun@1.2.19",
   "description": "Add icons to Astro Starlight: sidebar, codeblocks, file tree",
   "license": "MIT",
   "homepage": "https://github.com/Rettend/starlight-plugin-icons#readme",
