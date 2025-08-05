@@ -1,0 +1,30 @@
+---
+import DefaultHeader from '@astrojs/starlight/components/Header.astro'
+---
+
+<svg style="display: none;">
+  <filter id="pixelate">
+    <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="r"
+    ></feColorMatrix>
+    <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="g"
+    ></feColorMatrix>
+    <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="b"
+    ></feColorMatrix>
+    <feOffset in="r" dx="5" dy="0" result="r-offset"></feOffset>
+    <feOffset in="b" dx="-5" dy="0" result="b-offset"></feOffset>
+    <feBlend in="r-offset" in2="g" mode="screen" result="rg"></feBlend>
+    <feBlend in="rg" in2="b-offset" mode="screen"></feBlend>
+  </filter>
+</svg>
+
+<DefaultHeader {...Astro.props} />
+
+<style>
+  @media (min-width: 72rem) {
+    :global(header) {
+      backdrop-filter: url(#pixelate) blur(1px);
+      background: linear-gradient(to top, transparent, var(--sl-color-bg-nav));
+      border-bottom: none;
+    }
+  }
+</style>

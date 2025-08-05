@@ -1,0 +1,37 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "bun@1.2.20",
+  "scripts": {
+    "predev": "bun run scripts/generate-icon-safelist.mjs",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "prebuild": "bun run scripts/generate-icon-safelist.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "astro sync",
+    "check": "astro check",
+    "lint": "eslint . --fix",
+    "astro": "astro",
+    "clean-icons-cache": "rm -f .material-icons-cache/material-icons-safelist.json"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.35.2",
+    "astro": "^5.12.8",
+    "sharp": "^0.34.3",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "^5.2.6",
+    "@iconify-json/material-icon-theme": "^1.2.17",
+    "@iconify-json/ph": "^1.2.2",
+    "unocss": "^66.4.1"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "printWidth": 100
+  }
+}

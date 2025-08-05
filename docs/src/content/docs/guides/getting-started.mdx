@@ -1,0 +1,110 @@
+---
+title: Getting Started
+description: How to install and set up starlight-plugin-icons for the first time.
+---
+
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import IconLink from '~/components/IconLink.astro'
+import FileTree from '~/components/starlight/FileTree.astro'
+
+This guide will walk you through installing `starlight-plugin-icons` and setting it up for the first time.
+
+<br />
+
+<Steps>
+
+1. ##### Install the package
+
+    <Tabs syncKey="pkg">
+      <TabItem label="npm">
+        ```sh
+        npm i starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="yarn">
+        ```sh
+        yarn add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="bun">
+        ```sh
+        bun add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="ni">
+        ```sh
+        ni starlight-plugin-icons
+        ```
+      </TabItem>
+    </Tabs>
+
+2. ##### Codeblocks
+
+    ```js title="astro.config.mjs"
+    import { defineConfig } from 'astro/config'
+    import starlight from '@astrojs/starlight'
+
+    export default defineConfig({
+      integrations: [starlight()],
+    })
+    ```
+
+    <Tabs syncKey="lang">
+      <TabItem label="TypeScript">
+        and a ts file!
+
+        ```ts title="file.ts"
+        const x = null ?? 'default'
+        console.log(x)
+        const y ??= 'default'
+        console.log(y)
+        ```
+      </TabItem>
+      <TabItem label="JavaScript">
+        and a js file!
+
+        ```js title="file.js"
+        const x = null ?? 'default'
+        console.log(x)
+        const y ??= 'default'
+        console.log(y)
+        ```
+      </TabItem>
+    </Tabs>
+
+3. ##### Icon Link Button
+
+    An awesome `<IconLink>` component!
+
+    <div class="row">
+      <IconLink href="/adapters/drizzle/" icon="i-icons:drizzle" title="Drizzle" />
+    </div>
+
+4. ##### File Tree
+
+    File Tree has icons!
+
+    <FileTree>
+      - routes
+        - api
+          - auth
+            - [...gau]
+              - +server.ts
+        - +layout.svelte
+        - +page.svelte
+      - hooks.server.ts
+      - lib
+        - server
+          - auth.ts
+        - auth.ts
+      - app.d.ts
+      - package.json
+      - svelte.config.js
+    </FileTree>
+
+</Steps>

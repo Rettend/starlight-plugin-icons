@@ -1,0 +1,117 @@
+:root {
+  --sl-font: 'Inter', sans-serif;
+  --sl-color-accent-low: oklch(0.269 0 0);
+  --sl-color-accent: oklch(0.708 0 0);
+  --sl-color-accent-high: oklch(0.97 0 0);
+  --sl-color-white: oklch(1 0 0);
+  --sl-color-gray-1: oklch(0.97 0 0);
+  --sl-color-gray-2: oklch(0.708 0 0);
+  --sl-color-gray-3: oklch(0.556 0 0);
+  --sl-color-gray-4: oklch(0.269 0 0);
+  --sl-color-gray-5: oklch(0.269 0 0);
+  --sl-color-gray-6: oklch(0.205 0 0);
+  --sl-color-black: oklch(0.145 0 0);
+  --sl-color-bg-nav: oklch(0.145 0 0);
+  --sl-color-bg-sidebar: oklch(0.145 0 0);
+}
+
+html[data-theme='light'] {
+  --sl-color-accent-low: oklch(0.269 0 0);
+  --sl-color-accent: oklch(0.145 0 0);
+  --sl-color-accent-high: oklch(0.97 0 0);
+  --sl-color-white: oklch(0.145 0 0);
+  --sl-color-gray-1: oklch(0.145 0 0);
+  --sl-color-gray-2: oklch(0.205 0 0);
+  --sl-color-gray-3: oklch(0.269 0 0);
+  --sl-color-gray-4: oklch(0.556 0 0);
+  --sl-color-gray-5: oklch(0.922 0 0);
+  --sl-color-gray-6: oklch(0.95 0 0);
+  --sl-color-black: oklch(1 0 0);
+  --sl-color-bg-nav: oklch(1 0 0);
+  --sl-color-bg-sidebar: oklch(1 0 0);
+}
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 300ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+code[dir='auto'] {
+  white-space: nowrap;
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.code-block-icon {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.expressive-code figcaption.header {
+  display: flex;
+  align-items: center;
+}
+
+.expressive-code figcaption.header .title {
+  display: flex;
+  padding-left: 0;
+  align-items: center;
+}
+
+.expressive-code figcaption.header .title {
+  display: flex;
+  padding-left: 0;
+  align-items: center;
+}
+
+.i-icons\:drizzle {
+  color: #c5f74f !important;
+}
+
+html[data-theme='light'] .i-icons\:drizzle {
+  color: var(--sl-color-white) !important;
+}
+
+a[aria-current='page'] > .i-icons\:drizzle {
+  color: var(--sl-color-text-invert) !important;
+}

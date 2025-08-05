@@ -1,0 +1,26 @@
+---
+title: starlight-plugin-icons
+description: Add icons to Astro Starlight - sidebar, codeblocks, file tree
+template: splash
+hero:
+  tagline: Add icons to Astro Starlight - sidebar, codeblocks, file tree
+  actions:
+    - text: Get Started
+      link: guides/getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/Rettend/starlight-plugin-icons
+      icon: external
+      variant: minimal
+    - text: Icon Gallery
+      link: https://icones.js.org/
+      icon: external
+      variant: minimal
+---
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Iconify Support" icon="puzzle">
+    Use 200k+ icons from Iconify simply via CSS classes
+  </Card>
+</CardGrid>

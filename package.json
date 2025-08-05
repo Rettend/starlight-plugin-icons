@@ -1,0 +1,45 @@
+{
+  "name": "starlight-plugin-icons",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "bun@1.2.20",
+  "description": "Add icons to Astro Starlight: sidebar, codeblocks, file tree",
+  "license": "MIT",
+  "homepage": "https://github.com/Rettend/starlight-plugin-icons#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rettend/starlight-plugin-icons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Rettend/starlight-plugin-icons/issues"
+  },
+  "keywords": [
+    "astro",
+    "icons",
+    "starlight"
+  ],
+  "module": "src/index.ts",
+  "scripts": {
+    "lint": "eslint . --fix",
+    "update:deps": "taze latest -wr",
+    "release": "bumpp && bun run build && npm publish"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.1.0",
+    "@types/bun": "latest",
+    "@unocss/eslint-plugin": "^66.4.1",
+    "astro-eslint-parser": "^1.2.2",
+    "bumpp": "^10.2.2",
+    "eslint": "^9.32.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-format": "^1.0.1",
+    "prettier-plugin-astro": "^0.14.1",
+    "taze": "^19.1.0"
+  },
+  "workspaces": [
+    "docs"
+  ]
+}
