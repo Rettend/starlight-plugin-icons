@@ -17,10 +17,20 @@ hero:
       icon: external
       variant: minimal
 ---
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid } from '@astrojs/starlight/components'
+import Card from '../../components/starlight/Card.astro'
+import Link from '../../components/Link.astro'
 
 <CardGrid stagger>
-  <Card title="Iconify Support" icon="puzzle">
-    Use 200k+ icons from Iconify simply via CSS classes
-  </Card>
+	<Card title="Sidebar & Card Icons" icon="i-ph:popsicle-duotone" bordered>
+		Add any icon to the Sidebar and `<Card>` components.
+	</Card>
+	<Card title="Iconify Support" icon="i-ph-puzzle-piece-duotone" bordered>
+		Use 200k+ icons from Iconify simply via CSS classes
+	</Card>
+	<Card title="Code Block Icons" icon="i-ph:code-block-duotone" bordered>
+		Automatically display
+    <Link href="https://github.com/material-extensions/vscode-material-icon-theme">Material Icons</Link>
+    in code blocks and `<FileTree>` components.
+	</Card>
 </CardGrid>
