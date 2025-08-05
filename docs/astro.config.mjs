@@ -29,6 +29,7 @@ function addIcons(sidebar) {
 }
 
 export default defineConfig({
+  base: '/starlight-plugin-icons',
   vite: {
     resolve: {
       alias: {
