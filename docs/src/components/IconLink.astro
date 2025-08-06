@@ -26,7 +26,6 @@ const { href, icon, title, flat = false } = Astro.props
     gap: 0.5rem;
     padding: 1.5rem 1rem;
     border-radius: 0.5rem;
-    color: var(--sl-color-white);
     text-decoration: none;
     font-size: var(--sl-text-sm);
     transition:
@@ -42,6 +41,17 @@ const { href, icon, title, flat = false } = Astro.props
     border: 1px solid var(--sl-color-gray-5);
   }
 
+  .icon-link-card.flat:hover,
+  .icon-link-card.flat:focus {
+    border-color: var(--sl-color-accent);
+    background: color-mix(in srgb, var(--sl-color-accent-low) 20%, transparent);
+  }
+
+  html[data-theme='light'] .icon-link-card.flat:hover,
+  html[data-theme='light'] .icon-link-card.flat:focus {
+    background: color-mix(in srgb, var(--sl-color-accent-low) 10%, transparent);
+  }
+
   .icon-link-card.enhanced {
     border: 1px solid transparent;
     background-origin: border-box;
@@ -52,11 +62,19 @@ const { href, icon, title, flat = false } = Astro.props
     box-shadow: 0 1px 2px 0 #0000000d;
   }
 
-  .icon-link-card.flat:hover,
-  .icon-link-card.flat:focus {
-    border-color: var(--sl-color-accent);
-    background: color-mix(in srgb, var(--sl-color-accent-low) 20%, transparent);
-    color: var(--sl-color-white);
+  html[data-theme='light'] .icon-link-card.enhanced {
+    border: 1px solid transparent;
+    background-origin: border-box;
+    background-image:
+      linear-gradient(
+        to top in oklab,
+        color-mix(in oklab, var(--sl-color-accent-low) 5%, white) 0%,
+        color-mix(in oklab, var(--sl-color-gray-6) 5%, white) 100%
+      ),
+      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-6) 17%, transparent), var(--sl-color-gray-6));
+    background-clip: padding-box, border-box;
+    box-shadow: 0 1px 2px 0 #0000000d;
+    color: var(--sl-color-gray-5);
   }
 
   .icon-link-card.enhanced:hover,
@@ -67,7 +85,18 @@ const { href, icon, title, flat = false } = Astro.props
       0 -10px 10px -5px color-mix(in srgb, var(--sl-color-accent) 10%, transparent),
       inset 0 10px 10px -5px color-mix(in srgb, var(--sl-color-accent) 10%, transparent),
       0 10px 10px -5px color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
-    color: var(--sl-color-white);
+  }
+
+  html[data-theme='light'] .icon-link-card.enhanced:hover,
+  html[data-theme='light'] .icon-link-card.enhanced:focus {
+    background-image:
+      linear-gradient(
+        to top in oklab,
+        color-mix(in oklab, var(--sl-color-accent-low) 10%, white) 0%,
+        color-mix(in oklab, var(--sl-color-gray-6) 40%, white) 100%
+      ),
+      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-6) 17%, transparent), var(--sl-color-gray-6));
+    border-color: var(--sl-color-gray-4);
   }
 
   .icon-link-card span {
@@ -76,7 +105,7 @@ const { href, icon, title, flat = false } = Astro.props
   }
 
   html[data-theme='light'] .icon-link-card span {
-    color: var(--sl-color-gray-4);
+    color: var(--sl-color-gray-1);
   }
 
   .icon-link-card:hover span,
