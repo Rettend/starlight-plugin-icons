@@ -5,10 +5,8 @@
   "private": true,
   "packageManager": "bun@1.2.19",
   "scripts": {
-    "predev": "bun run scripts/generate-icon-safelist.mjs",
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "bun run scripts/generate-icon-safelist.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "sync": "astro sync",

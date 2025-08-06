@@ -3,12 +3,13 @@ interface Props {
   href: string
   icon: string
   title: string
+  flat?: boolean
 }
 
-const { href, icon, title } = Astro.props
+const { href, icon, title, flat = false } = Astro.props
 ---
 
-<a href={href} class="icon-link-card">
+<a href={href} class={`icon-link-card ${flat ? 'flat' : 'enhanced'}`}>
   <div class="icon">
     <span class={icon}></span>
   </div>
@@ -24,7 +25,6 @@ const { href, icon, title } = Astro.props
     text-align: center;
     gap: 0.5rem;
     padding: 1.5rem 1rem;
-    border: 1px solid var(--sl-color-gray-5);
     border-radius: 0.5rem;
     color: var(--sl-color-white);
     text-decoration: none;
@@ -35,6 +35,24 @@ const { href, icon, title } = Astro.props
     background-color: transparent;
     width: 9rem; /* w-36 */
     height: 8rem; /* h-32 */
+  }
+
+  .icon-link-card.flat {
+    border: 1px solid var(--sl-color-gray-5);
+  }
+
+  .icon-link-card.enhanced {
+    border: 1px solid var(--sl-color-gray-5);
+    outline: 1px solid color-mix(in oklab, var(--sl-color-gray-5) 50%, transparent);
+    outline-offset: -1px;
+    background-image: linear-gradient(to top in oklab, oklch(92.2% 0 0 / 5%) 0%, oklch(17% 0 0) 100%);
+    box-shadow: 0 1px 2px 0 #0000000d;
+  }
+
+  .icon-link-card.enhanced:hover {
+    box-shadow:
+      inset 0 -4px 6px -1px rgba(0, 0, 0, 0.1),
+      inset 0 -2px 4px -2px rgba(0, 0, 0, 0.1);
   }
 
   .icon-link-card:hover,

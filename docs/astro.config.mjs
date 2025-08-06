@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
+import starlightPluginIcons from '../src'
 import { pluginIcon } from './src/lib/expressive-code.mjs'
 
 /**
@@ -33,11 +34,13 @@ export default defineConfig({
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./src', import.meta.url)),
+        'starlight-plugin-icons': fileURLToPath(new URL('../src', import.meta.url)),
       },
     },
   },
   integrations: [
     UnoCSS(),
+    starlightPluginIcons(),
     starlight({
       title: 'starlight-plugin-icons',
       social: [
