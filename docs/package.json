@@ -19,6 +19,7 @@
     "@astrojs/starlight": "^0.35.2",
     "astro": "^5.12.8",
     "sharp": "^0.34.3",
+    "starlight-plugin-icons": "workspace:^",
     "zod": "3.22.4"
   },
   "devDependencies": {

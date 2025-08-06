@@ -2,7 +2,7 @@ import type { AstroIntegrationLogger } from './types'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { globSync } from 'glob'
-import { getIconDetails, resolveFolderIcon, resolveIcon } from '../../docs/src/lib/material-icons.mjs'
+import { getIconDetails, resolveFolderIcon, resolveIcon } from './material-icons'
 
 const codeBlockRegex = /```(?<lang>[a-zA-Z]\w*)?(?:\s[^\n]*?title="(?<title>[^"]+)")?/g
 const fileTreeRegex = /<FileTree>([\s\S]*?)<\/FileTree>/g
@@ -77,7 +77,7 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
           }
         }
         else {
-          const iconClass = await resolveIcon(entryName, null)()
+          const iconClass = await resolveIcon(entryName, undefined)()
           if (iconClass) {
             usedIcons.add(iconClass)
           }

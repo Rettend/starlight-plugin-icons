@@ -3,10 +3,15 @@ import { z } from 'zod'
 export const StarlightIconsOptionsSchema = z
   .object({
     /**
-     * Defines whether the code blocks icons are enabled.
+     * Defines whether the sidebar component is overridden.
      * @default true
      */
-    codeBlocks: z.boolean().default(true),
+    sidebar: z.boolean().default(true),
+    /**
+     * Defines whether to extract and generate the icon safelist.
+     * @default true
+     */
+    extractSafelist: z.boolean().default(true),
   })
   .default({})
 

@@ -20,7 +20,12 @@ starlight-plugin-icons/
 │   ├── astro.config.mjs      # Will use the starlight-plugin-icons integration
 │   └── ...
 ├── src/                      # The plugin source code
-│   ├── components/           # Overridable Starlight components (Card, FileTree, etc.)
+│   ├── components/           # Re-usable components for users to import
+│   │   ├── Card.astro
+│   │   ├── IconLink.astro
+│   │   ├── FileTree.astro
+│   │   └── starlight/        # Overridable Starlight components
+│   │       └── Sidebar.astro
 │   ├── lib/                  # Core logic and utilities
 │   │   ├── material-icons.ts # Logic for fetching and resolving material icons
 │   │   ├── rehype-file-tree.ts # Rehype plugin for FileTree icons
@@ -47,7 +52,9 @@ starlight-plugin-icons/
 
 ### Phase 2: Code Migration and TypeScript Conversion
 
-1. **Migrate Components:** Move `Card.astro`, `FileTree.astro`, `Sidebar.astro`, etc., from `/docs` to `/src/components`.
+1. **Migrate Components:**
+   - Move user-facing components like `Card.astro`, `FileTree.astro`, and `IconLink.astro` to `src/components`.
+   - Move Starlight component overrides like `Sidebar.astro` to `src/components/starlight`.
 2. **Migrate and Convert Logic:**
    - Move `docs/src/lib/material-icons.mjs` to `src/lib/material-icons.ts`.
    - Move `docs/src/components/starlight/rehype-file-tree.ts` to `src/lib/rehype-file-tree.ts`.
@@ -71,8 +78,8 @@ starlight-plugin-icons/
 The API remains simple. The key change is the **removal of manual script setup**, as this is now handled by the plugin's Astro hooks.
 
 ```javascript
-import starlight from '@astrojs/starlight'
 // astro.config.mjs
+import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
 import { starlightPluginIcons } from 'starlight-plugin-icons'
 
@@ -85,9 +92,8 @@ export default defineConfig({
     starlightPluginIcons({
       // Options to enable/disable features.
       // Defaults to true, so users can omit this for full functionality.
-      codeBlocks: true,
-      fileTree: true,
-      // ...etc
+      sidebar: true, // Enable custom sidebar icons
+      extractSafelist: true, // Automatically generate the icon safelist for FileTree and Code Blocks
     }),
   ],
 })
@@ -98,8 +104,8 @@ export default defineConfig({
 Users will import the preset from the plugin, which greatly simplifies their config.
 
 ```typescript
-import { presetStarlightIcons } from 'starlight-plugin-icons/uno'
 // uno.config.ts
+import { presetStarlightIcons } from 'starlight-plugin-icons/uno'
 import { defineConfig, presetIcons } from 'unocss'
 
 export default defineConfig({
@@ -124,7 +130,7 @@ export default defineConfig({
   - The exported `presetStarlightIcons` function in `src/uno.ts` will return a `Preset` object.
   - This preset will contain a `safelist` property that reads the `.material-icons-cache/material-icons-safelist.json` file.
   - It will also merge the necessary `presetIcons` configurations for Iconify and material icons.
-- **Component Overrides:** The integration will use the `starlight.components` configuration to override `Card`, `FileTree`, and `Sidebar`. This is a clean, officially supported method for extending Starlight.
+- **Component Overrides:** The integration will use the `starlight.components` configuration to override `FileTree` and `Sidebar`. This is a clean, officially supported method for extending Starlight. User-facing components like `Card` and `IconLink` will be exported for manual import.
 
 ## 6. Minimal Setup Guides
 
@@ -140,9 +146,7 @@ The documentation will be updated to reflect this new, simpler setup process.
 
    starlightPluginIcons({
      sidebar: false,
-     card: false,
-     fileTree: false,
-     codeBlocks: true, // Only enable what you need
+     extractSafelist: true, // Only enable what you need
    })
    ```
 

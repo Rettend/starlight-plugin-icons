@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
-import starlightPluginIcons from '../src'
+import starlightPluginIcons from 'starlight-plugin-icons'
 import { pluginIcon } from './src/lib/expressive-code.mjs'
 
 /**
@@ -34,7 +34,6 @@ export default defineConfig({
     resolve: {
       alias: {
         '~': fileURLToPath(new URL('./src', import.meta.url)),
-        'starlight-plugin-icons': fileURLToPath(new URL('../src', import.meta.url)),
       },
     },
   },
@@ -53,7 +52,6 @@ export default defineConfig({
       },
       components: {
         Header: './src/components/starlight/Header.astro',
-        Sidebar: './src/components/starlight/Sidebar.astro',
       },
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 5 },
       sidebar: addIcons([
