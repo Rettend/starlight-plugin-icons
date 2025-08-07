@@ -1,11 +1,11 @@
 import { h } from 'hastscript'
-import { getIconDetails } from './material-icons.mjs'
+import { getIconDetails } from './material-icons'
 
 export function pluginIcon() {
   return {
     name: 'Plugin Icon',
     hooks: {
-      async postprocessRenderedBlock(context) {
+      async postprocessRenderedBlock(context: any) {
         const { codeBlock, renderData } = context
 
         if (!codeBlock.props.title)
@@ -19,19 +19,19 @@ export function pluginIcon() {
         if (!iconClass)
           return
 
-        const ast = renderData?.blockAst
+        const ast = renderData?.blockAst as any
         if (!ast || !('children' in ast))
           return
 
         const figcaption = ast.children.find(
-          child => child.type === 'element' && child.tagName === 'figcaption',
+          (child: any) => child.type === 'element' && child.tagName === 'figcaption',
         )
 
         if (!figcaption?.children)
           return
 
         const titleSpan = figcaption.children.find(
-          child =>
+          (child: any) =>
             child.type === 'element'
             && child.tagName === 'span'
             && child.properties?.className?.includes('title'),

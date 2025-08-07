@@ -12,19 +12,20 @@
     "sync": "astro sync",
     "check": "astro check",
     "lint": "eslint . --fix",
-    "astro": "astro",
-    "clean-icons-cache": "rm -f .material-icons-cache/material-icons-safelist.json"
+    "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.35.2",
     "astro": "^5.12.8",
     "sharp": "^0.34.3",
-    "starlight-plugin-icons": "workspace:^",
+    "starlight-plugin-icons": "workspace:*",
+    "typescript": "^5.9.2",
     "zod": "3.22.4"
   },
   "devDependencies": {
     "@fontsource/inter": "^5.2.6",
-    "@iconify-json/material-icon-theme": "^1.2.17",
+    "@iconify-json/material-icon-theme": "^1.2.18",
     "@iconify-json/ph": "^1.2.2",
     "unocss": "^66.4.1"
   },

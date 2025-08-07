@@ -132,7 +132,26 @@ export default defineConfig({
   - It will also merge the necessary `presetIcons` configurations for Iconify and material icons.
 - **Component Overrides:** The integration will use the `starlight.components` configuration to override `FileTree` and `Sidebar`. This is a clean, officially supported method for extending Starlight. User-facing components like `Card` and `IconLink` will be exported for manual import.
 
-## 6. Minimal Setup Guides
+## 6. Sidebar Icons API (replacement for `addIcons`)
+
+- Exported helper: `withSidebarIcons(sidebar: SidebarInput[]): SidebarInput[]` in `starlight-plugin-icons`.
+- Types exported: `SidebarInput`, `SidebarGroupInput`, `SidebarLinkInput`.
+- Usage in `astro.config.mjs`:
+
+  ```js
+  import starlightPluginIcons, { withSidebarIcons } from 'starlight-plugin-icons'
+
+  // ... inside starlight({ sidebar: ... })
+  sidebar: withSidebarIcons([
+    { label: 'Guides', items: [
+      { icon: 'i-ph:rocket-launch-duotone', label: 'Getting Started', slug: 'guides/getting-started' },
+    ] },
+  ])
+  ```
+
+This replaces the custom `addIcons` function while keeping a typed `icon` field on each link.
+
+## 7. Minimal Setup Guides
 
 The documentation will be updated to reflect this new, simpler setup process.
 
@@ -162,3 +181,11 @@ The documentation will be updated to reflect this new, simpler setup process.
    ```
 
 4. **Done!** No need to add `prebuild` scripts. The plugin handles safelist generation automatically.
+
+## 8. Remaining Tasks Checklist
+
+- [ ] Expressive Code plugin: move `docs/src/lib/expressive-code.mjs` into `src/lib/expressive-code.ts` and export/inject it.
+- [ ] CSS injection: inject `starlight-plugin-icons/styles/main.css` via Starlight plugin hook so docs don’t need to import it.
+- [ ] Ensure Uno preset reads packaged assets (done) and that build ships `dist/assets` and `dist/styles` (done).
+- [ ] Docs cleanup: removed local `addIcons` (done), replace `pluginIcon` import with package export when implemented.
+- [ ] Document `SidebarInput` types in README and docs.

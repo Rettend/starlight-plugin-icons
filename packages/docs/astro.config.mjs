@@ -2,31 +2,8 @@
 import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
+import starlightPluginIcons, { withSidebarIcons } from 'starlight-plugin-icons'
 import UnoCSS from 'unocss/astro'
-import starlightPluginIcons from 'starlight-plugin-icons'
-import { pluginIcon } from './src/lib/expressive-code.mjs'
-
-/**
- * @param {any[]} sidebar
- *
- * @returns {any[]} sidebar
- */
-function addIcons(sidebar) {
-  return sidebar.map((entry) => {
-    if ('items' in entry)
-      return { ...entry, items: addIcons(entry.items) }
-
-    const icon = entry.attrs?.icon ?? entry.icon
-    if (icon) {
-      delete entry.icon
-      if (!entry.attrs)
-        entry.attrs = {}
-      entry.attrs['data-icon'] = icon
-    }
-
-    return entry
-  })
-}
 
 export default defineConfig({
   base: 'starlight-plugin-icons',
@@ -47,14 +24,11 @@ export default defineConfig({
         { icon: 'discord', label: 'Discord', href: 'https://discord.gg/FvVaUPhj3t' },
       ],
       customCss: ['@fontsource/inter/400.css', '@fontsource/inter/600.css', './src/styles/custom.css'],
-      expressiveCode: {
-        plugins: [pluginIcon()],
-      },
       components: {
         Header: './src/components/starlight/Header.astro',
       },
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 5 },
-      sidebar: addIcons([
+      sidebar: withSidebarIcons([
         {
           label: 'Guides',
           items: [

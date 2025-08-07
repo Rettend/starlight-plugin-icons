@@ -1,65 +1,18 @@
 {
-  "name": "starlight-plugin-icons",
+  "name": "starlight-plugin-icons-monorepo",
+  "private": true,
   "type": "module",
-  "version": "0.0.1",
   "packageManager": "bun@1.2.19",
-  "description": "Add icons to Astro Starlight: sidebar, codeblocks, file tree",
-  "license": "MIT",
-  "homepage": "https://github.com/Rettend/starlight-plugin-icons#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Rettend/starlight-plugin-icons.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Rettend/starlight-plugin-icons/issues"
-  },
-  "keywords": [
-    "astro",
-    "icons",
-    "starlight"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    },
-    "./uno": {
-      "types": "./dist/uno.d.ts",
-      "import": "./dist/uno.js"
-    },
-    "./components/*": "./dist/components/*"
-  },
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "build": "bun --bun tsup",
+    "build": "cd packages/starlight-plugin-icons && bun run build",
     "lint": "eslint . --fix",
-    "update:deps": "taze latest -wr",
-    "release": "bumpp && bun run build && npm publish"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^5.2.0",
-    "@types/bun": "latest",
-    "@typescript/native-preview": "^7.0.0-dev.20250806.1",
-    "@unocss/eslint-plugin": "^66.4.1",
-    "astro-eslint-parser": "^1.2.2",
-    "bumpp": "^10.2.2",
-    "esbuild-plugin-copy": "^2.1.1",
-    "eslint": "^9.32.0",
-    "eslint-plugin-astro": "^1.3.1",
-    "eslint-plugin-format": "^1.0.1",
-    "glob": "^11.0.3",
-    "prettier-plugin-astro": "^0.14.1",
-    "taze": "^19.1.0",
-    "tsup": "^8.5.0"
-  },
-  "workspaces": [
-    "."
-  ]
+    "dev": "cd packages/docs && bun run dev",
+    "docs:build": "cd packages/docs && bun run build",
+    "docs:check": "cd packages/docs && bun run check"
+  }
 }
+
+

@@ -1,8 +1,12 @@
 import type { AstroIntegration } from 'astro'
 import type { StarlightIconsOptions } from './types'
 import process from 'node:process'
+import { pluginIcon } from './lib/expressive-code'
 import { generateSafelist } from './lib/safelist'
 import { StarlightIconsOptionsSchema } from './types'
+
+export { withSidebarIcons } from './lib/sidebar'
+export type { SidebarGroupInput, SidebarInput, SidebarLinkInput } from './lib/sidebar'
 
 function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegration {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
@@ -18,18 +22,36 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
           return
         }
 
-        const components: Record<string, string> = {}
-
-        if (parsedOptions.sidebar) {
-          components.Sidebar = 'starlight-plugin-icons/components/starlight/Sidebar.astro'
-        }
-
         starlightConfig.plugins ??= []
         starlightConfig.plugins.push({
-          name: 'starlight-plugin-icons-components',
+          name: 'starlight-plugin-icons',
           hooks: {
-            'starlight:override:components': () => {
-              return components
+            'config:setup': ({ config, updateConfig }: { config: any, updateConfig: any }) => {
+              const components: Record<string, string> = { ...(config.components || {}) }
+              if (parsedOptions.sidebar) {
+                components.Sidebar = 'starlight-plugin-icons/components/starlight/Sidebar.astro'
+              }
+
+              const customCss = Array.isArray(config.customCss) ? [...config.customCss] : []
+              if (!customCss.includes('starlight-plugin-icons/styles/main.css')) {
+                customCss.push('starlight-plugin-icons/styles/main.css')
+              }
+
+              const expressiveCode = config.expressiveCode === false
+                ? false
+                : {
+                    ...(config.expressiveCode || {}),
+                    plugins: [
+                      ...(config.expressiveCode?.plugins || []),
+                      pluginIcon(),
+                    ],
+                  }
+
+              updateConfig({
+                components,
+                customCss,
+                expressiveCode,
+              } as any)
             },
           },
         })

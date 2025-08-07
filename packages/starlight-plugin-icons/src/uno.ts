@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
+import { fileURLToPath } from 'node:url'
 import { presetIcons } from 'unocss'
 
 function getMaterialIconsSafelist(): string[] {
@@ -24,8 +25,16 @@ export function presetStarlightIcons(): Preset {
       presetIcons({
         collections: {
           icons: {
-            'folder': () => fsp.readFile('./assets/folder.svg', 'utf-8'),
-            'folder-open': () => fsp.readFile('./assets/folder-open.svg', 'utf-8'),
+            'folder': () => {
+              const moduleDir = path.dirname(fileURLToPath(import.meta.url))
+              const svgPath = path.join(moduleDir, 'assets', 'folder.svg')
+              return fsp.readFile(svgPath, 'utf-8')
+            },
+            'folder-open': () => {
+              const moduleDir = path.dirname(fileURLToPath(import.meta.url))
+              const svgPath = path.join(moduleDir, 'assets', 'folder-open.svg')
+              return fsp.readFile(svgPath, 'utf-8')
+            },
           },
         },
       }),
