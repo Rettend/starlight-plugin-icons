@@ -10,7 +10,6 @@ export { pluginIcon } from './lib/expressive-code'
 export { withSidebarIcons } from './lib/sidebar'
 export type { SidebarGroupInput, SidebarInput, SidebarLinkInput } from './lib/sidebar'
 
-// Starlight plugin to update Starlight config (runs inside Starlight's own hooks)
 export function starlightPluginIconsPlugin(options: StarlightIconsOptions = {}): StarlightPlugin {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
   return {
@@ -43,7 +42,6 @@ export function starlightPluginIconsPlugin(options: StarlightIconsOptions = {}):
   }
 }
 
-// Astro integration to run safelist extraction at dev/build time
 function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegration {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
   return {
@@ -66,3 +64,53 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
 }
 
 export default starlightPluginIcons
+
+export type StarlightIntegrationFactory = (userOptions: any) => AstroIntegration
+
+export type StarlightPluginIconsPresetOptions = StarlightIconsOptions & {
+  // Options to forward to Starlight integration factory provided by the user
+  starlight?: any
+}
+
+/**
+ * All-in-one preset that wires up Starlight with this plugin for you.
+ * Usage in astro.config.*:
+ *
+ * integrations: [
+ *   UnoCSS(),
+ *   starlightPluginIconsPreset({ starlight: { ...yourStarlightOptions } })
+ * ]
+ */
+export function starlightPluginIconsPreset(
+  starlightFactoryOrOptions?: StarlightIntegrationFactory | StarlightPluginIconsPresetOptions,
+  maybeOptions: StarlightPluginIconsPresetOptions = {},
+): AstroIntegration[] {
+  // Support only the safe form that passes the Starlight integration factory to avoid importing TS from this package.
+  const starlightFactory = (typeof starlightFactoryOrOptions === 'function'
+    ? starlightFactoryOrOptions
+    : undefined) as StarlightIntegrationFactory | undefined
+
+  const options = (starlightFactory
+    ? maybeOptions
+    : (starlightFactoryOrOptions as StarlightPluginIconsPresetOptions)) || {}
+
+  if (!starlightFactory) {
+    throw new Error(
+      'starlightPluginIconsPreset requires the Starlight integration function as the first argument.\n'
+      + 'Usage: ...starlightPluginIconsPreset(starlight, { starlight: { /* your config */ } })',
+    )
+  }
+
+  const { starlight: starlightOptions, ...iconsOptions } = options
+  const starlightBase = (starlightOptions ?? {}) as any
+  const starlightWithIcons = starlightFactory({
+    ...starlightBase,
+    plugins: [
+      ...(starlightBase.plugins ?? []),
+      starlightPluginIconsPlugin(iconsOptions),
+    ],
+  })
+
+  const astroSide = starlightPluginIcons(iconsOptions)
+  return [starlightWithIcons, astroSide]
+}

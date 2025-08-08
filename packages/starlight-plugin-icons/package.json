@@ -16,7 +16,8 @@
   "keywords": [
     "astro",
     "icons",
-    "starlight"
+    "starlight",
+    "astro-integration"
   ],
   "exports": {
     ".": {
