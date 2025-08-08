@@ -7,14 +7,12 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "cd packages/starlight-plugin-icons && bun run dev",
-    "build": "cd packages/starlight-plugin-icons && bun run build",
     "lint": "eslint . --fix",
-    "docs:dev": "cd packages/docs && bun run dev",
-    "docs:build": "cd packages/docs && bun run build",
-    "docs:check": "cd packages/docs && bun run check",
+    "dev": "cd packages/docs && bun run dev",
+    "build": "cd packages/docs && bun run build",
+    "check": "cd packages/docs && bun run check",
     "update:deps": "taze latest -wr",
-    "release": "bumpp packages/starlight-plugin-icons/package.json && bun run build && npm publish --workspace starlight-plugin-icons"
+    "release": "bumpp packages/starlight-plugin-icons/package.json && npm publish --workspace starlight-plugin-icons"
   },
   "devDependencies": {
     "bumpp": "^10.2.2",
