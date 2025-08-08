@@ -9,7 +9,7 @@
   "scripts": {
     "build": "cd packages/starlight-plugin-icons && bun run build",
     "lint": "eslint . --fix",
-    "dev": "cd packages/docs && bun run dev",
+    "docs:dev": "cd packages/docs && bun run dev",
     "docs:build": "cd packages/docs && bun run build",
     "docs:check": "cd packages/docs && bun run check",
     "update:deps": "taze latest -wr",
