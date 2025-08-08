@@ -4,17 +4,36 @@ import fsp from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
+import { globSync } from 'glob'
 import { definePreset, presetIcons } from 'unocss'
 
 function getMaterialIconsSafelist(): string[] {
   try {
-    const safelistPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
-    const safelist = fs.readFileSync(safelistPath, 'utf-8')
-    return JSON.parse(safelist)
+    // Primary location: current working directory
+    const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
+    if (fs.existsSync(directPath)) {
+      const safelist = fs.readFileSync(directPath, 'utf-8')
+      return JSON.parse(safelist)
+    }
+
+    // Fallback for monorepos/CI where the working directory may be the repo root.
+    // Search for any generated safelist within the repository (excluding node_modules/.git).
+    const matches = globSync('**/.material-icons-cache/material-icons-safelist.json', {
+      cwd: process.cwd(),
+      absolute: true,
+      ignore: ['**/node_modules/**', '**/.git/**'],
+    })
+
+    if (matches.length > 0) {
+      const safelist = fs.readFileSync(matches[0]!, 'utf-8')
+      return JSON.parse(safelist)
+    }
   }
   catch {
-    return []
+    // fallthrough to empty list
   }
+
+  return []
 }
 
 function loadIcon(iconName: string) {
