@@ -13,6 +13,5 @@ export const StarlightIconsOptionsSchema = z
      */
     extractSafelist: z.boolean().default(true),
   })
-  .default({})
 
 export type StarlightIconsOptions = z.input<typeof StarlightIconsOptionsSchema>

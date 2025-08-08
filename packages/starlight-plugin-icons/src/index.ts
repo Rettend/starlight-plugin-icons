@@ -56,9 +56,9 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
           },
         })
 
-        updateConfig({
-          integrations: config.integrations,
-        })
+        // updateConfig({
+        //   integrations: config.integrations,
+        // })
       },
       'astro:build:start': async ({ logger }) => {
         if (!parsedOptions.extractSafelist) {

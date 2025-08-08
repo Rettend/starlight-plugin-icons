@@ -51,18 +51,18 @@
   },
   "dependencies": {
     "glob": "^11.0.3",
-    "hast-util-select": "^6.0.3",
-    "hast-util-to-string": "^3.0.0",
-    "hastscript": "^9.0.0",
-    "rehype": "^13.0.1",
+    "hast-util-select": "^6.0.4",
+    "hast-util-to-string": "^3.0.1",
+    "hastscript": "^9.0.1",
+    "rehype": "^13.0.2",
     "unist-util-visit": "^5.0.0",
-    "zod": ">=3.22.0"
+    "zod": ">=4.0.15"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.2.0",
     "@types/bun": "latest",
-    "@typescript/native-preview": "^7.0.0-dev.20250807.1",
-    "@unocss/eslint-plugin": "^66.4.1",
+    "@typescript/native-preview": "^7.0.0-dev.20250808.1",
+    "@unocss/eslint-plugin": "^66.4.2",
     "astro-eslint-parser": "^1.2.2",
     "bumpp": "^10.2.2",
     "esbuild-plugin-copy": "^2.1.1",

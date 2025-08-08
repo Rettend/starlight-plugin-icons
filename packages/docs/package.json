@@ -27,7 +27,7 @@
     "@fontsource/inter": "^5.2.6",
     "@iconify-json/material-icon-theme": "^1.2.18",
     "@iconify-json/ph": "^1.2.2",
-    "unocss": "^66.4.1"
+    "unocss": "^66.4.2"
   },
   "prettier": {
     "singleQuote": true,

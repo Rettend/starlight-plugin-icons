@@ -7,4 +7,5 @@ export default antfu({
   rules: {
     'no-console': 'warn',
   },
+  ignores: ['**/dist/**', '**/node_modules/**', '**/.astro/**'],
 })

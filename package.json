@@ -1,7 +1,7 @@
 {
   "name": "starlight-plugin-icons-monorepo",
-  "private": true,
   "type": "module",
+  "private": true,
   "packageManager": "bun@1.2.19",
   "workspaces": [
     "packages/*"
@@ -11,8 +11,12 @@
     "lint": "eslint . --fix",
     "dev": "cd packages/docs && bun run dev",
     "docs:build": "cd packages/docs && bun run build",
-    "docs:check": "cd packages/docs && bun run check"
+    "docs:check": "cd packages/docs && bun run check",
+    "update:deps": "taze latest -wr",
+    "release": "bumpp packages/starlight-plugin-icons/package.json && bun run build && npm publish --workspace starlight-plugin-icons"
+  },
+  "devDependencies": {
+    "bumpp": "^10.2.2",
+    "taze": "^19.1.0"
   }
 }
-
-
