@@ -10,6 +10,7 @@
     "lint": "eslint . --fix",
     "dev": "cd packages/docs && bun run dev",
     "build": "cd packages/docs && bun run build",
+    "preview": "cd packages/docs && bun run preview",
     "check": "cd packages/docs && bun run check",
     "update:deps": "taze latest -wr",
     "release": "bumpp packages/starlight-plugin-icons/package.json && npm publish --workspace starlight-plugin-icons"

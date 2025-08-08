@@ -11,6 +11,14 @@ function getMaterialIconsSafelist(): string[] {
   try {
     console.log('SAFELIST: process.cwd()', process.cwd())
 
+    // Highest priority: explicit path via env var (e.g. set on CI)
+    const envPath = process.env.SPI_SAFELIST_PATH
+    if (envPath && fs.existsSync(envPath)) {
+      const safelist = fs.readFileSync(envPath, 'utf-8')
+      console.log('SAFELIST ENV', envPath)
+      return JSON.parse(safelist)
+    }
+
     // Primary location: current working directory
     const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
     if (fs.existsSync(directPath)) {

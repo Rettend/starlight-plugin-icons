@@ -59,18 +59,18 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
           logger.warn(`Failed to prepare icon safelist early: ${err instanceof Error ? err.message : String(err)}`)
         }
       },
-      'astro:build:start': async ({ logger }) => {
-        if (!parsedOptions.extractSafelist)
-          return
-        logger.info('Generating icon safelist...')
-        await generateSafelist(logger, process.cwd())
-      },
-      'astro:server:start': async ({ logger }) => {
-        if (!parsedOptions.extractSafelist)
-          return
-        logger.info('Generating icon safelist...')
-        await generateSafelist(logger, process.cwd())
-      },
+      // 'astro:build:start': async ({ logger }) => {
+      //   if (!parsedOptions.extractSafelist)
+      //     return
+      //   logger.info('Generating icon safelist...')
+      //   await generateSafelist(logger, process.cwd())
+      // },
+      // 'astro:server:start': async ({ logger }) => {
+      //   if (!parsedOptions.extractSafelist)
+      //     return
+      //   logger.info('Generating icon safelist...')
+      //   await generateSafelist(logger, process.cwd())
+      // },
     },
   }
 }
