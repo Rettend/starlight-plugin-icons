@@ -13,6 +13,7 @@ function getMaterialIconsSafelist(): string[] {
     const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
     if (fs.existsSync(directPath)) {
       const safelist = fs.readFileSync(directPath, 'utf-8')
+      console.log('SAFELIST 1', safelist)
       return JSON.parse(safelist)
     }
 
@@ -26,6 +27,7 @@ function getMaterialIconsSafelist(): string[] {
 
     if (matches.length > 0) {
       const safelist = fs.readFileSync(matches[0]!, 'utf-8')
+      console.log('SAFELIST 2', safelist)
       return JSON.parse(safelist)
     }
   }
