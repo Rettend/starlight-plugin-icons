@@ -12,7 +12,7 @@ export { pluginIcon } from './lib/expressive-code'
 export { withSidebarIcons } from './lib/sidebar'
 export type { SidebarGroupInput, SidebarInput, SidebarLinkInput } from './lib/sidebar'
 
-export function starlightIcons(options: StarlightIconsOptions = {}): StarlightPlugin {
+export function starlightIconsPlugin(options: StarlightIconsOptions = {}): StarlightPlugin {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
   return {
     name: 'starlight-plugin-icons',
@@ -47,7 +47,7 @@ export function starlightIcons(options: StarlightIconsOptions = {}): StarlightPl
   }
 }
 
-export function iconSafelist(options: StarlightIconsOptions = {}): AstroIntegration {
+export function starlightIconsIntegration(options: StarlightIconsOptions = {}): AstroIntegration {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
   return {
     name: 'starlight-plugin-icons',
@@ -84,10 +84,10 @@ export default function Icons(options: StarlightPluginIconsPresetOptions = {}): 
     sidebar: starlightBase.sidebar ? withSidebarIcons(starlightBase.sidebar) : undefined,
     plugins: [
       ...(starlightBase.plugins ?? []),
-      starlightIcons(iconsOptions),
+      starlightIconsPlugin(iconsOptions),
     ],
   })
 
-  const astroSide = iconSafelist(iconsOptions)
+  const astroSide = starlightIconsIntegration(iconsOptions)
   return [starlightWithIcons, astroSide]
 }

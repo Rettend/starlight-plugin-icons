@@ -1,0 +1,19 @@
+---
+title: Troubleshooting
+description: Fix common issues with icons and the safelist.
+---
+
+Missing icons
+
+- Ensure UnoCSS is installed and enabled.
+- Verify the icon class exists (e.g. `i-ph:*`, `i-material-icon-theme:*`).
+
+Safelist not applied
+
+- Check `.material-icons-cache/material-icons-safelist.json` exists after dev/build.
+- Set `SPI_SAFELIST_PATH` to a custom safelist if your content folder is nonstandard.
+
+Network fetch errors
+
+- The plugin downloads Material Icons metadata on first run. If offline, it falls back without icons.
+

@@ -16,6 +16,7 @@
     "release": "bumpp packages/starlight-plugin-icons/package.json && npm publish --workspace starlight-plugin-icons"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.2.5",
     "bumpp": "^10.2.2",
     "taze": "^19.1.0"
   }

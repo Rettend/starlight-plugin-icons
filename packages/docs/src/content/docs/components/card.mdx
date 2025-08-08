@@ -1,0 +1,21 @@
+---
+title: Card
+description: A content card with optional icon and style variables.
+---
+
+```astro title="Usage"
+---
+import Card from 'starlight-plugin-icons/components/Card.astro'
+---
+
+<Card title="Code Block Icons" icon="i-ph:code-block-duotone" bordered>
+  Automatically display language icons in captions.
+</Card>
+```
+
+Props
+
+- `title` string — card title (supports HTML via `set:html`)
+- `icon?` string — Iconify class
+- `bordered?` boolean — show icon in a colored square
+

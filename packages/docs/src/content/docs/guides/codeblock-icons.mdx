@@ -1,0 +1,23 @@
+---
+title: Code Block Icons
+description: Automatic Material Icons for code blocks.
+---
+
+How it works
+
+- An Expressive Code hook inspects code blocks.
+- If the block has a `title` (e.g. `title="app.ts"`) or a known `language`, the plugin resolves a Material Icon and prepends it to the caption.
+
+Usage
+
+```ts title="example.mdx"
+```ts title="app.ts"
+console.log('hi')
+```
+```
+
+Notes
+
+- The CSS for spacing is included via `starlight-plugin-icons/styles/main.css` when the plugin is enabled.
+- You can disable all codeblock features by setting `codeblock: false` in options.
+

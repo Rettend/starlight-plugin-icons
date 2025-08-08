@@ -1,0 +1,20 @@
+---
+title: IconLink
+description: A simple icon-first link card component.
+---
+
+```astro title="Usage"
+---
+import IconLink from 'starlight-plugin-icons/components/IconLink.astro'
+---
+
+<IconLink href="/getting-started/installation/" icon="i-ph:package-duotone" title="Install" />
+```
+
+Props
+
+- `href` string — destination URL
+- `icon` string — Iconify class (e.g. `i-ph:*`)
+- `title?` string — label shown under the icon
+- `flat?` boolean — use a simpler, bordered style
+

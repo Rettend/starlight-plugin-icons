@@ -4,6 +4,7 @@
     "": {
       "name": "starlight-plugin-icons-monorepo",
       "devDependencies": {
+        "@iconify-json/logos": "^1.2.5",
         "bumpp": "^10.2.2",
         "taze": "^19.1.0",
       },
@@ -239,6 +240,8 @@
     "@humanwhocodes/module-importer": ["@humanwhocodes/module-importer@1.0.1", "", {}, "sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA=="],
 
     "@humanwhocodes/retry": ["@humanwhocodes/retry@0.4.3", "", {}, "sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ=="],
+
+    "@iconify-json/logos": ["@iconify-json/logos@1.2.5", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-WR8+9kFwx1tIR+hWpKYC+rpVkAuzHyaVxZRfhGGIjqCfgbodK7rS4+OZhktdKtZKKcdmhpLZKvlmRm4IA4dKRg=="],
 
     "@iconify-json/material-icon-theme": ["@iconify-json/material-icon-theme@1.2.18", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-hcJ8vJazfXcMnBjAsgVcs3fsfNuxDOnvU4Cqt7th2PnFjWo3ThI4R33aPTGR46WfQX/reXgi3WnUsxNObDc40A=="],
 

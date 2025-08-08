@@ -1,0 +1,20 @@
+---
+title: Safelist & Caching
+description: How the Material Icons safelist is generated and consumed.
+---
+
+Generation
+
+- During dev/build, the integration scans `src/content/**/*.mdx?` for:
+  - Code block titles and languages
+  - `<FileTree>` entries
+- It writes `.material-icons-cache/material-icons-safelist.json` in your project root.
+
+Usage
+
+- The UnoCSS preset reads this safelist automatically and adds classes to `safelist`.
+
+Override path
+
+- Set `SPI_SAFELIST_PATH` env var to a JSON file of classes to force a safelist.
+

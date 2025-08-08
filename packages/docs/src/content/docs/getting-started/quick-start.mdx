@@ -1,0 +1,47 @@
+---
+title: Quick Start
+description: Minimal working example using the preset.
+---
+
+Sidebar with icons
+
+```js title="astro.config.mjs"
+import Icons from 'starlight-plugin-icons'
+
+export default {
+  integrations: [
+    Icons({
+      starlight: {
+        sidebar: [
+          {
+            label: 'Guide',
+            items: [
+              { icon: 'i-ph:rocket-launch-duotone', label: 'Intro', slug: 'guide/intro' },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
+}
+```
+
+Code block icon via title
+
+```ts title="docs/guide/intro.mdx"
+```ts title="app.ts"
+console.log('hi')
+```
+```
+
+File tree with icons
+
+```mdx
+<FileTree>
+  - src
+    - pages
+      - index.astro
+  - package.json
+</FileTree>
+```
+

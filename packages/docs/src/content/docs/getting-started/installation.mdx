@@ -1,0 +1,83 @@
+---
+title: Installation
+description: Install and add the plugin to your Astro + Starlight project.
+---
+
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+
+<Steps>
+
+0. ##### Prerequisites
+
+    - Astro 4+ and Starlight 0.35+
+    - UnoCSS
+    <br />
+
+1. ##### Install the package
+
+    <Tabs syncKey="pkg">
+      <TabItem label="npm">
+        ```sh
+        npm i starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="yarn">
+        ```sh
+        yarn add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="bun">
+        ```sh
+        bun add starlight-plugin-icons
+        ```
+      </TabItem>
+      <TabItem label="ni">
+        ```sh
+        ni starlight-plugin-icons
+        ```
+      </TabItem>
+    </Tabs>
+
+2. ##### Replace Starlight with the plugin
+
+    `Icons()` wraps the Starlight plugin, so replace your existing `starlight()` integration with it:
+
+    ```js title="astro.config.mjs" del={3,9-11} ins={4,12-16}
+    import { defineConfig } from 'astro/config'
+    import UnoCSS from 'unocss/astro'
+    import starlight from '@astrojs/starlight'
+    import Icons from 'starlight-plugin-icons'
+
+    export default defineConfig({
+      integrations: [
+        UnoCSS(),
+        starlight({
+          title: 'My dull docs site',
+        }),
+        Icons({
+          starlight: {
+            title: 'My dull docs site',
+          },
+        }),
+      ],
+    })
+    ```
+
+3. ##### Add the UnoCSS preset
+
+    ```ts title="uno.config.ts"
+    import { defineConfig } from 'unocss'
+    import { presetStarlightIcons } from 'starlight-plugin-icons/uno'
+
+    export default defineConfig({
+      presets: [presetStarlightIcons()],
+    })
+    ```
+
+</Steps>
+

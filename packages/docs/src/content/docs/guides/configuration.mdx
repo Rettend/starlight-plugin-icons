@@ -3,7 +3,47 @@ title: Configuration
 description: How to configure the starlight-plugin-icons for your Astro project.
 ---
 
-```css title="styles/custom.css"
+Preset configuration
+
+```js title="astro.config.mjs"
+import Icons from 'starlight-plugin-icons'
+
+export default {
+  integrations: [
+    Icons({
+      // Toggle features
+      sidebar: true,          // override Sidebar component
+      codeblock: true,        // code block icons + CSS
+      extractSafelist: true,  // scan content for Material Icons safelist
+
+      // Pass-through Starlight config (icon field supported in sidebar)
+      starlight: {
+        sidebar: [
+          { label: 'Guide', items: [{ icon: 'i-ph:rocket-launch-duotone', label: 'Intro', slug: 'guide/intro' }] },
+        ],
+      },
+    }),
+  ],
+}
+```
+
+Using plugins manually
+
+```js title="astro.config.mjs"
+import starlight from '@astrojs/starlight'
+import { starlightIconsPlugin, starlightIconsIntegration } from 'starlight-plugin-icons'
+
+export default {
+  integrations: [
+    starlight({ plugins: [starlightIconsPlugin()] }),
+    starlightIconsIntegration(),
+  ],
+}
+```
+
+CSS variables
+
+```css title="src/styles/custom.css"
 :root {
   /* Code blocks */
   --spi-codeblock-icon-size: 1.4rem;
@@ -31,5 +71,3 @@ description: How to configure the starlight-plugin-icons for your Astro project.
   --spi-card-icon-wrapper-pad: 0.3em;
 }
 ```
-
-TODO

@@ -1,0 +1,26 @@
+---
+title: FileTree Component
+description: Component that renders an accessible file tree with icons.
+---
+
+```mdx
+import FileTree from 'starlight-plugin-icons/components/FileTree.astro'
+
+<FileTree>
+  - src/
+    - pages/
+      - index.astro
+  - package.json
+</FileTree>
+```
+
+Authoring rules
+
+- Directories end with `/` or contain nested lists.
+- `**README.md**` highlights an entry.
+- Text after the name becomes a comment: ``README.md important``.
+
+Accessibility
+
+- Directories include an SR-only label for screen readers.
+

@@ -1,0 +1,34 @@
+---
+title: Sidebar Icons
+description: Add icons to Starlight's sidebar entries.
+---
+
+Add an `icon` class to each entry. The preset maps it to the overridden Sidebar component.
+
+```js title="astro.config.mjs"
+Icons({
+  starlight: {
+    sidebar: [
+      {
+        label: 'Guides',
+        items: [
+          { icon: 'i-ph:rocket-launch-duotone', label: 'Intro', slug: 'guides/intro' },
+        ],
+      },
+    ],
+  },
+})
+```
+
+Tips
+
+- Use Iconify class names (e.g. `i-ph:*`, `i-material-icon-theme:*`).
+- Size and gap are customizable: `--spi-sidebar-icon-size`, `--spi-sidebar-icon-gap`.
+
+Sidebar override details
+
+The plugin swaps Starlight's `Sidebar` with a compatible component that reads `attrs["data-icon"]` and renders an icon span before the label. Styling hooks:
+
+- `.sidebar-icon` for the injected icon span
+- CSS vars: `--spi-sidebar-icon-size`, `--spi-sidebar-icon-gap`
+
