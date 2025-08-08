@@ -44,7 +44,7 @@ export default defineConfig({
               { icon: 'i-ph:code-block-duotone', label: 'Code Block Icons', slug: 'guides/codeblock-icons' },
               { icon: 'i-logos:unocss', label: 'UnoCSS Preset', slug: 'guides/unocss-preset' },
               { icon: 'i-ph:shield-check-duotone', label: 'Safelist & Caching', slug: 'guides/safelist' },
-              { icon: 'i-ph:paint-brush-broad-duotone', label: 'Theming', slug: 'guides/theming' },
+              { icon: 'i-ph:paint-brush-broad-duotone', label: 'Styling', slug: 'guides/styling' },
             ],
           },
           {

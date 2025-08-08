@@ -3,13 +3,65 @@ title: IconLink
 description: A simple icon-first link card component.
 ---
 
-```astro title="Usage"
+import IconLink from 'starlight-plugin-icons/components/IconLink.astro'
+
+Example source
+
+````mdx
 ---
 import IconLink from 'starlight-plugin-icons/components/IconLink.astro'
 ---
 
 <IconLink href="/getting-started/installation/" icon="i-ph:package-duotone" title="Install" />
-```
+````
+
+Rendered
+
+Variants: Icon only
+
+<div class="row">
+  <IconLink href="#" icon="i-ph:rocket-duotone" />
+  <IconLink href="#" icon="i-ph:rocket-duotone" flat />
+</div>
+
+Variants: Icon + text
+
+<div class="row">
+  <IconLink href="#" icon="i-ph:sparkle-duotone" title="Shiny" />
+  <IconLink href="#" icon="i-ph:sparkle-duotone" title="Shiny" flat />
+</div>
+
+Variants: Icon + text + href
+
+<div class="row">
+  <IconLink href="https://example.com" icon="i-ph:link-simple-duotone" title="External" />
+  <IconLink href="https://example.com" icon="i-ph:link-simple-duotone" title="External" flat />
+</div>
+
+Customization (scoped)
+
+Smaller, icon-only, round
+
+<div class="demo-iconlink-round row">
+  <IconLink href="#" icon="i-ph:heart-duotone" />
+  <IconLink href="#" icon="i-ph:star-duotone" />
+  <IconLink href="#" icon="i-ph:lightning-duotone" />
+  <IconLink href="#" icon="i-ph:heart-duotone" flat />
+  <IconLink href="#" icon="i-ph:star-duotone" flat />
+  <IconLink href="#" icon="i-ph:lightning-duotone" flat />
+  
+</div>
+
+<style>{`
+  .demo-iconlink-round {
+    --spi-iconlink-width: 4.5rem;
+    --spi-iconlink-height: 4.5rem;
+    --spi-iconlink-gap: 0.25rem;
+    --spi-iconlink-icon-size: 2rem;
+    --spi-iconlink-pad: 0.5rem;
+    --spi-iconlink-radius: 9999px;
+  }
+`}</style>
 
 Props
 
@@ -17,4 +69,17 @@ Props
 - `icon` string — Iconify class (e.g. `i-ph:*`)
 - `title?` string — label shown under the icon
 - `flat?` boolean — use a simpler, bordered style
+
+CSS variables
+
+```css
+:root {
+  --spi-iconlink-width: 10rem;
+  --spi-iconlink-height: 9rem;
+  --spi-iconlink-gap: 0.75rem;
+  --spi-iconlink-icon-size: 3.25rem;
+  --spi-iconlink-pad: 0.875rem;
+  --spi-iconlink-radius: 0.375rem;
+}
+```
 

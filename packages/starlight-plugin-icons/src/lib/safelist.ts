@@ -64,7 +64,7 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
             || (nextLine && nextLine.indentation > line.indentation)
 
         if (isDirectory) {
-          const folderName = entryName.replace(/\/$/, '')
+          const folderName = entryName.trim().replace(/[/\\]+$/, '')
           const [closedIcon, openIcon] = await Promise.all([
             resolveFolderIcon(folderName, false)(),
             resolveFolderIcon(folderName, true)(),

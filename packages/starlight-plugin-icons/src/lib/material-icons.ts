@@ -142,7 +142,10 @@ export function resolveFolderIcon(folderName: string, isOpen: boolean) {
       return
 
     const { materialIcons } = data
-    const lowerFolderName = folderName.toLowerCase()
+    const lowerFolderName = folderName
+      .trim()
+      .replace(/[\\/]+$/, '')
+      .toLowerCase()
 
     const iconName = isOpen
       ? materialIcons.folderNamesExpanded[lowerFolderName]

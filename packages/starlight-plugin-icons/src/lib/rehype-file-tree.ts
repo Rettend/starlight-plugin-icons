@@ -87,7 +87,7 @@ const fileTreeProcessor = rehype()
           isDirectory,
           isPlaceholder,
           isHighlighted,
-          name: firstChildTextContent.replace(/\/$/, '').trim(),
+          name: firstChildTextContent.trim().replace(/[\\/]+$/, ''),
           firstChild: firstChild!,
           otherChildren,
           comment,

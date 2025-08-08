@@ -3,16 +3,48 @@ title: FileTree Component
 description: Component that renders an accessible file tree with icons.
 ---
 
-```mdx
+import FileTree from 'starlight-plugin-icons/components/FileTree.astro'
+
+Example source
+
+````mdx
 import FileTree from 'starlight-plugin-icons/components/FileTree.astro'
 
 <FileTree>
   - src/
     - pages/
       - index.astro
-  - package.json
+  - package.json an **important** file <span class="i-ph:warning-duotone"></span>
 </FileTree>
-```
+````
+
+Rendered
+
+<FileTree>
+  - docs/
+    - components/
+      - file-tree.mdx
+  - **uno.config.ts** the <span class="i-logos:unocss"></span> UnoCSS file!
+  - package.json an **important** file <span class="i-ph:warning-duotone"></span>
+</FileTree>
+
+Customization (scoped)
+
+<div class="demo-filetree-custom">
+  <FileTree>
+    - src/
+      - routes/
+        - index.ts
+    - README.md
+  </FileTree>
+</div>
+
+<style>{`
+  .demo-filetree-custom {
+    --spi-filetree-icon-size: 1.2rem;
+    --spi-filetree-icon-gap: 0.5rem;
+  }
+`}</style>
 
 Authoring rules
 
@@ -23,4 +55,12 @@ Authoring rules
 Accessibility
 
 - Directories include an SR-only label for screen readers.
+
+CSS variables
+
+```css
+/* File tree */
+--spi-filetree-icon-size: 1.1rem;
+--spi-filetree-icon-gap: 0.25rem;
+```
 

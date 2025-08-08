@@ -3,7 +3,11 @@ title: Card
 description: A content card with optional icon and style variables.
 ---
 
-```astro title="Usage"
+import Card from 'starlight-plugin-icons/components/Card.astro'
+
+Example source
+
+````mdx
 ---
 import Card from 'starlight-plugin-icons/components/Card.astro'
 ---
@@ -11,11 +15,45 @@ import Card from 'starlight-plugin-icons/components/Card.astro'
 <Card title="Code Block Icons" icon="i-ph:code-block-duotone" bordered>
   Automatically display language icons in captions.
 </Card>
-```
+````
+
+Rendered
+
+<div class="row">
+  <Card title="Sidebar & Card Icons" icon="i-ph:popsicle-duotone" bordered>
+    Add icon classes to content cards or sidebar links.
+  </Card>
+  <Card title="Iconify Support" icon="i-ph:puzzle-piece-duotone">
+    Use 200k+ icons with UnoCSS and Iconify.
+  </Card>
+</div>
+
+Customization (scoped)
+
+<div class="demo-card-custom row">
+  <Card title="Bigger Icon" icon="i-ph:smiley-wink-duotone" bordered>
+    Tweaked icon and wrapper sizing.
+  </Card>
+</div>
+
+<style>{`
+  .demo-card-custom {
+    --spi-card-icon-size: 1.35em;
+    --spi-card-icon-wrapper-pad: 0.45em;
+  }
+`}</style>
 
 Props
 
 - `title` string — card title (supports HTML via `set:html`)
 - `icon?` string — Iconify class
 - `bordered?` boolean — show icon in a colored square
+
+CSS variables
+
+```css
+/* Card */
+--spi-card-icon-size: 1.1em;
+--spi-card-icon-wrapper-pad: 0.3em;
+```
 
