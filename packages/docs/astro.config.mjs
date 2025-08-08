@@ -1,7 +1,7 @@
 // @ts-check
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'astro/config'
-import { starlightPluginIconsPreset, withSidebarIcons } from 'starlight-plugin-icons'
+import Icons from 'starlight-plugin-icons'
 import UnoCSS from 'unocss/astro'
 
 export default defineConfig({
@@ -15,7 +15,7 @@ export default defineConfig({
   },
   integrations: [
     UnoCSS(),
-    ...starlightPluginIconsPreset({
+    Icons({
       starlight: {
         title: 'starlight-plugin-icons',
         social: [
@@ -27,7 +27,7 @@ export default defineConfig({
           Header: './src/components/starlight/Header.astro',
         },
         tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 5 },
-        sidebar: withSidebarIcons([
+        sidebar: [
           {
             label: 'Guides',
             items: [
@@ -44,7 +44,7 @@ export default defineConfig({
               { icon: 'i-material-icon-theme:svelte', label: 'Svelte', slug: 'demo/drizzle' },
             ],
           },
-        ]),
+        ],
       },
     }),
   ],

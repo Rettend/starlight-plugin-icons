@@ -137,8 +137,8 @@ const html = await processFileTree(fileTreeHtml, Astro.locals.t('fileTree.direct
   }
 
   starlight-file-tree :global(.tree-icon) {
-    font-size: 1.05rem;
-    margin-inline-end: 0.375rem;
+    font-size: var(--spi-filetree-icon-size, 1.05rem);
+    margin-inline-end: var(--spi-filetree-icon-gap, 0.375rem);
     color: var(--sl-color-gray-3);
   }
 

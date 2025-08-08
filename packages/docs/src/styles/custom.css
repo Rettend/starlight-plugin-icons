@@ -13,8 +13,6 @@
   --sl-color-black: oklch(0.145 0 0);
   --sl-color-bg-nav: oklch(0.145 0 0);
   --sl-color-bg-sidebar: oklch(0.145 0 0);
-
-  --spi-sidebar-icon-size: 1.2rem;
 }
 
 html[data-theme='light'] {

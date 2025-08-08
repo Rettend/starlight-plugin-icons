@@ -23,9 +23,9 @@ const { href, icon, title, flat = false } = Astro.props
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
+    gap: var(--spi-iconlink-gap, 0.5rem);
+    padding: var(--spi-iconlink-pad, 1rem);
+    border-radius: var(--spi-iconlink-radius, 0.5rem);
     text-decoration: none;
     font-size: var(--sl-text-sm);
     transition:
@@ -33,8 +33,8 @@ const { href, icon, title, flat = false } = Astro.props
       box-shadow 0.2s,
       border-color 0.2s;
     background-color: transparent;
-    width: 9rem; /* w-36 */
-    height: 8rem; /* h-32 */
+    width: var(--spi-iconlink-width, 9rem);
+    height: var(--spi-iconlink-height, 8rem);
   }
 
   .icon-link-card.flat {
@@ -114,8 +114,8 @@ const { href, icon, title, flat = false } = Astro.props
   }
 
   .icon-link-card .icon {
-    width: 3rem;
-    height: 3rem;
+    width: var(--spi-iconlink-icon-size, 3rem);
+    height: var(--spi-iconlink-icon-size, 3rem);
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -125,6 +125,6 @@ const { href, icon, title, flat = false } = Astro.props
   .icon-link-card .icon span {
     width: 100%;
     height: 100%;
-    font-size: 3rem;
+    font-size: var(--spi-iconlink-icon-size, 3rem);
   }
 </style>

@@ -1,12 +1,11 @@
-export interface SidebarLinkInput {
-  // Starlight sidebar link shape (minimal subset used here)
+interface CommonSidebarLinkInput {
   label: string
-  href?: string
-  slug?: string
   attrs?: Record<string, any>
   badge?: any
   icon?: string
 }
+
+export type SidebarLinkInput = CommonSidebarLinkInput & ({ link: string, slug?: never } | { link?: never, slug: string })
 
 export interface SidebarGroupInput {
   label: string

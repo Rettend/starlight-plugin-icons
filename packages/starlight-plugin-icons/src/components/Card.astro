@@ -61,13 +61,13 @@ const { icon, title, bordered } = Astro.props
     .card .icon {
       flex-shrink: 0;
       display: inline-block;
-      width: 1em;
-      height: 1em;
+      width: var(--spi-card-icon-size, 1em);
+      height: var(--spi-card-icon-size, 1em);
     }
     .card .icon-wrapper {
       border: 1px solid var(--sl-card-border);
       background-color: var(--sl-card-bg);
-      padding: 0.25em;
+      padding: var(--spi-card-icon-wrapper-pad, 0.25em);
       border-radius: 0.25rem;
       flex-shrink: 0;
       display: inline-flex;

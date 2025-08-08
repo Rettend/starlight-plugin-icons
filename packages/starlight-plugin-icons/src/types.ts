@@ -1,6 +1,12 @@
+import type { StarlightUserConfig } from '@astrojs/starlight/types'
+import type { SidebarInput } from './lib/sidebar'
 import { z } from 'zod'
 
-export const StarlightIconsOptionsSchema: z.ZodType<{ sidebar?: boolean, extractSafelist?: boolean }> = z
+export const StarlightIconsOptionsSchema: z.ZodType<{
+  sidebar?: boolean
+  extractSafelist?: boolean
+  codeblock?: boolean
+}> = z
   .object({
     /**
      * Defines whether the sidebar component is overridden.
@@ -12,6 +18,15 @@ export const StarlightIconsOptionsSchema: z.ZodType<{ sidebar?: boolean, extract
      * @default true
      */
     extractSafelist: z.boolean().default(true),
+    /**
+     * Controls all codeblock-related features: CSS injection and icon hook.
+     * @default true
+     */
+    codeblock: z.boolean().default(true),
   })
 
 export type StarlightIconsOptions = z.input<typeof StarlightIconsOptionsSchema>
+
+export type StarlightUserConfigWithIcons = Omit<StarlightUserConfig, 'sidebar'> & {
+  sidebar?: SidebarInput[]
+}

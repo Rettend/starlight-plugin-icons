@@ -1,7 +1,7 @@
 .code-block-icon {
-  font-size: 1.2rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
+  font-size: var(--spi-codeblock-icon-size, 1.2rem);
+  margin-right: var(--spi-codeblock-icon-gap-right, 0.5rem);
+  margin-left: var(--spi-codeblock-icon-gap-left, 0.5rem);
 }
 
 .expressive-code figcaption.header {

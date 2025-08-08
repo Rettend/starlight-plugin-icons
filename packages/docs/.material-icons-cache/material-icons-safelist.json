@@ -1,5 +1,6 @@
 [
   "i-material-icon-theme:astro-config",
+  "i-material-icon-theme:css",
   "i-material-icon-theme:folder-api",
   "i-material-icon-theme:folder-api-open",
   "i-material-icon-theme:folder-lib",
