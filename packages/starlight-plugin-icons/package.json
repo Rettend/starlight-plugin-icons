@@ -21,30 +21,27 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
     },
     "./uno": {
-      "types": "./dist/uno.d.ts",
-      "import": "./dist/uno.js"
+      "types": "./src/uno.ts",
+      "import": "./src/uno.ts"
     },
-    "./styles/*": "./dist/styles/*",
-    "./components/*": "./dist/components/*"
+    "./styles/*": "./src/styles/*",
+    "./components/*": "./src/components/*"
   },
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "src"
   ],
   "scripts": {
-    "prepare": "tsdown",
     "prepublishOnly": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\"",
     "postpublish": "node -e \"require('fs').unlinkSync('README.md')\"",
-    "dev": "tsdown -w",
-    "build": "tsdown",
+    "dev": "echo skip build (TS sources)",
+    "build": "echo skip build (TS sources)",
     "lint": "eslint . --fix",
     "update:deps": "taze latest -wr",
-    "release": "bumpp && bun run build && npm publish"
+    "release": "bumpp && npm publish"
   },
   "peerDependencies": {
     "@astrojs/starlight": ">=0.35.0",
@@ -73,8 +70,6 @@
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-format": "^1.0.1",
     "prettier-plugin-astro": "^0.14.1",
-    "rollup-plugin-copy": "^3.5.0",
-    "taze": "^19.1.0",
-    "tsdown": "^0.13.4"
+    "taze": "^19.1.0"
   }
 }

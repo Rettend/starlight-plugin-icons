@@ -2,6 +2,7 @@ import type { StarlightPlugin } from '@astrojs/starlight/types'
 import type { AstroIntegration } from 'astro'
 import type { StarlightIconsOptions } from './types'
 import process from 'node:process'
+import starlight from '@astrojs/starlight'
 import { pluginIcon } from './lib/expressive-code'
 import { generateSafelist } from './lib/safelist'
 import { StarlightIconsOptionsSchema } from './types'
@@ -65,11 +66,9 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
 
 export default starlightPluginIcons
 
-export type StarlightIntegrationFactory = (userOptions: any) => AstroIntegration
-
 export type StarlightPluginIconsPresetOptions = StarlightIconsOptions & {
-  // Options to forward to Starlight integration factory provided by the user
-  starlight?: any
+  // Forward Starlight integration options to the bundled Starlight integration
+  starlight?: Parameters<typeof starlight>[0]
 }
 
 /**
@@ -81,29 +80,11 @@ export type StarlightPluginIconsPresetOptions = StarlightIconsOptions & {
  *   starlightPluginIconsPreset({ starlight: { ...yourStarlightOptions } })
  * ]
  */
-export function starlightPluginIconsPreset(
-  starlightFactoryOrOptions?: StarlightIntegrationFactory | StarlightPluginIconsPresetOptions,
-  maybeOptions: StarlightPluginIconsPresetOptions = {},
-): AstroIntegration[] {
-  // Support only the safe form that passes the Starlight integration factory to avoid importing TS from this package.
-  const starlightFactory = (typeof starlightFactoryOrOptions === 'function'
-    ? starlightFactoryOrOptions
-    : undefined) as StarlightIntegrationFactory | undefined
-
-  const options = (starlightFactory
-    ? maybeOptions
-    : (starlightFactoryOrOptions as StarlightPluginIconsPresetOptions)) || {}
-
-  if (!starlightFactory) {
-    throw new Error(
-      'starlightPluginIconsPreset requires the Starlight integration function as the first argument.\n'
-      + 'Usage: ...starlightPluginIconsPreset(starlight, { starlight: { /* your config */ } })',
-    )
-  }
-
+export function starlightPluginIconsPreset(options: StarlightPluginIconsPresetOptions = {}): AstroIntegration[] {
   const { starlight: starlightOptions, ...iconsOptions } = options
-  const starlightBase = (starlightOptions ?? {}) as any
-  const starlightWithIcons = starlightFactory({
+
+  const starlightBase = (starlightOptions ?? {}) as Parameters<typeof starlight>[0]
+  const starlightWithIcons = starlight({
     ...starlightBase,
     plugins: [
       ...(starlightBase.plugins ?? []),

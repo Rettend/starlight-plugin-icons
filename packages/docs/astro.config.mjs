@@ -1,6 +1,5 @@
 // @ts-check
 import { fileURLToPath } from 'node:url'
-import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
 import { starlightPluginIconsPreset, withSidebarIcons } from 'starlight-plugin-icons'
 import UnoCSS from 'unocss/astro'
@@ -16,7 +15,7 @@ export default defineConfig({
   },
   integrations: [
     UnoCSS(),
-    ...starlightPluginIconsPreset(starlight, {
+    ...starlightPluginIconsPreset({
       starlight: {
         title: 'starlight-plugin-icons',
         social: [
