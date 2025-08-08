@@ -5,8 +5,10 @@
   "private": true,
   "packageManager": "bun@1.2.19",
   "scripts": {
+    "predev": "cd ../starlight-plugin-icons && bun run build",
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "cd ../starlight-plugin-icons && bun run build",
     "build": "astro build",
     "preview": "astro preview",
     "sync": "astro sync",

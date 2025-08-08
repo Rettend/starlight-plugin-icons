@@ -36,6 +36,7 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "tsdown",
     "prepublishOnly": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\"",
     "postpublish": "node -e \"require('fs').unlinkSync('README.md')\"",
     "build": "tsdown",
