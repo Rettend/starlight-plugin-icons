@@ -48,6 +48,17 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
   return {
     name: 'starlight-plugin-icons',
     hooks: {
+      'astro:config:setup': async ({ logger }) => {
+        if (!parsedOptions.extractSafelist)
+          return
+        try {
+          logger.info('Preparing icon safelist...')
+          await generateSafelist(logger, process.cwd())
+        }
+        catch (err) {
+          logger.warn(`Failed to prepare icon safelist early: ${err instanceof Error ? err.message : String(err)}`)
+        }
+      },
       'astro:build:start': async ({ logger }) => {
         if (!parsedOptions.extractSafelist)
           return
