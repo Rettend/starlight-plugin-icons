@@ -9,6 +9,8 @@ import { definePreset, presetIcons } from 'unocss'
 
 function getMaterialIconsSafelist(): string[] {
   try {
+    console.log('SAFELIST: process.cwd()', process.cwd())
+
     // Primary location: current working directory
     const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
     if (fs.existsSync(directPath)) {
