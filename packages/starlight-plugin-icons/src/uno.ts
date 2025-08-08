@@ -1,3 +1,4 @@
+import type { PresetFactory } from 'unocss'
 import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
@@ -24,7 +25,7 @@ function loadIcon(iconName: string) {
   }
 }
 
-export const presetStarlightIcons: ReturnType<typeof definePreset> = definePreset(() => {
+export const presetStarlightIcons: PresetFactory<object, undefined> = definePreset(() => {
   const internalIcons = presetIcons({
     collections: {
       'starlight-plugin-icons': {

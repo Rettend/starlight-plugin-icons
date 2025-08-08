@@ -39,6 +39,7 @@
     "prepare": "tsdown",
     "prepublishOnly": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\"",
     "postpublish": "node -e \"require('fs').unlinkSync('README.md')\"",
+    "dev": "tsdown -w",
     "build": "tsdown",
     "lint": "eslint . --fix",
     "update:deps": "taze latest -wr",

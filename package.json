@@ -7,6 +7,7 @@
     "packages/*"
   ],
   "scripts": {
+    "dev": "cd packages/starlight-plugin-icons && bun run dev",
     "build": "cd packages/starlight-plugin-icons && bun run build",
     "lint": "eslint . --fix",
     "docs:dev": "cd packages/docs && bun run dev",
