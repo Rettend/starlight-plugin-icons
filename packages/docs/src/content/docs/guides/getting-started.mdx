@@ -77,6 +77,29 @@ This guide will walk you through installing `starlight-plugin-icons` and setting
       </TabItem>
     </Tabs>
 
+    even svelte files!
+
+    ```svelte title="file.svelte"
+    <script>
+      let name = 'world'
+    </script>
+    <h1>Hello {name}!</h1>
+    ```
+
+    ```js title="file.svelte.js"
+    const x = null ?? 'default'
+    console.log(x)
+    const y ??= 'default'
+    console.log(y)
+    ```
+
+    ```ts title="file.svelte.ts"
+    const x = null ?? 'default'
+    console.log(x)
+    const y ??= 'default'
+    console.log(y)
+    ```
+
 3. ##### Icon Link Button
 
     An awesome `<IconLink>` component!
@@ -91,7 +114,15 @@ This guide will walk you through installing `starlight-plugin-icons` and setting
       <IconLink href="/adapters/drizzle/" icon="i-icons:drizzle" title="Drizzle Flat" flat />
       <IconLink href="/adapters/drizzle/" icon="i-icons:drizzle" title="Drizzle Flat" flat />
     </div>
-
+    
+    
+    <div class="row">
+      <IconLink icon="i-starlight-plugin-icons:svelte-js" title="Svelte js" />
+      <IconLink icon="i-starlight-plugin-icons:svelte-ts" />
+      <IconLink icon="i-starlight-plugin-icons:folder-open" />
+      <IconLink icon="i-material-icon-theme:svelte" />
+      <IconLink icon="i-ph:folder-open-duotone" />
+    </div>
 4. ##### File Tree
 
     File Tree has icons!

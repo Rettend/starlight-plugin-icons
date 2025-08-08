@@ -5,6 +5,7 @@ import { pluginIcon } from './lib/expressive-code'
 import { generateSafelist } from './lib/safelist'
 import { StarlightIconsOptionsSchema } from './types'
 
+export { pluginIcon } from './lib/expressive-code'
 export { withSidebarIcons } from './lib/sidebar'
 export type { SidebarGroupInput, SidebarInput, SidebarLinkInput } from './lib/sidebar'
 
@@ -14,7 +15,7 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
   return {
     name: 'starlight-plugin-icons',
     hooks: {
-      'astro:config:setup': ({ config, updateConfig, logger }) => {
+      'astro:config:setup': ({ config, logger }) => {
         const starlightConfig: any = config.integrations.find(({ name }) => name === '@astrojs/starlight')
 
         if (!starlightConfig) {
@@ -47,18 +48,10 @@ function starlightPluginIcons(options: StarlightIconsOptions = {}): AstroIntegra
                     ],
                   }
 
-              updateConfig({
-                components,
-                customCss,
-                expressiveCode,
-              } as any)
+              updateConfig({ components, customCss, expressiveCode })
             },
           },
         })
-
-        // updateConfig({
-        //   integrations: config.integrations,
-        // })
       },
       'astro:build:start': async ({ logger }) => {
         if (!parsedOptions.extractSafelist) {

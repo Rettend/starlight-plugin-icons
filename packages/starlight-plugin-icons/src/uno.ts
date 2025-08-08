@@ -1,10 +1,9 @@
-import type { Preset } from 'unocss'
 import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import { presetIcons } from 'unocss'
+import { definePreset, presetIcons } from 'unocss'
 
 function getMaterialIconsSafelist(): string[] {
   try {
@@ -17,27 +16,38 @@ function getMaterialIconsSafelist(): string[] {
   }
 }
 
-export function presetStarlightIcons(): Preset {
+function loadIcon(iconName: string) {
+  return () => {
+    const moduleDir = path.dirname(fileURLToPath(import.meta.url))
+    const svgPath = path.join(moduleDir, 'assets', `${iconName}.svg`)
+    return fsp.readFile(svgPath, 'utf-8')
+  }
+}
+
+export const presetStarlightIcons = definePreset(() => {
+  const internalIcons = presetIcons({
+    collections: {
+      'starlight-plugin-icons': {
+        'folder': loadIcon('folder'),
+        'folder-open': loadIcon('folder-open'),
+        'svelte-js': loadIcon('svelte-js'),
+        'svelte-ts': loadIcon('svelte-ts'),
+      },
+    },
+    autoInstall: false,
+    extraProperties: {
+      'display': 'inline-block',
+      'vertical-align': 'middle',
+    },
+  })
+
+  const internalIconsRenamed = { ...(internalIcons as any), name: 'starlight-plugin-icons-icons' }
+
   return {
     name: 'starlight-plugin-icons-preset',
     safelist: getMaterialIconsSafelist(),
     presets: [
-      presetIcons({
-        collections: {
-          icons: {
-            'folder': () => {
-              const moduleDir = path.dirname(fileURLToPath(import.meta.url))
-              const svgPath = path.join(moduleDir, 'assets', 'folder.svg')
-              return fsp.readFile(svgPath, 'utf-8')
-            },
-            'folder-open': () => {
-              const moduleDir = path.dirname(fileURLToPath(import.meta.url))
-              const svgPath = path.join(moduleDir, 'assets', 'folder-open.svg')
-              return fsp.readFile(svgPath, 'utf-8')
-            },
-          },
-        },
-      }),
+      internalIconsRenamed as any,
     ],
   }
-}
+})

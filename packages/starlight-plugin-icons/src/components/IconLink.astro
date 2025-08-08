@@ -2,7 +2,7 @@
 interface Props {
   href: string
   icon: string
-  title: string
+  title?: string
   flat?: boolean
 }
 
@@ -13,7 +13,7 @@ const { href, icon, title, flat = false } = Astro.props
   <div class="icon">
     <span class={icon}></span>
   </div>
-  <span>{title}</span>
+  {title && <span class="title">{title}</span>}
 </a>
 
 <style>
@@ -24,7 +24,7 @@ const { href, icon, title, flat = false } = Astro.props
     justify-content: center;
     text-align: center;
     gap: 0.5rem;
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     border-radius: 0.5rem;
     text-decoration: none;
     font-size: var(--sl-text-sm);

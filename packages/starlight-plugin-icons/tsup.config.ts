@@ -4,7 +4,7 @@ import { copy } from 'esbuild-plugin-copy'
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-  entry: ['src/index.ts', 'src/uno.ts'],
+  entry: ['src/index.ts', 'src/uno.ts', 'src/lib/rehype-file-tree.ts'],
   format: ['esm'],
   target: 'node20',
   splitting: false,
@@ -13,23 +13,6 @@ export default defineConfig({
   clean: true,
   outDir: 'dist',
   tsconfig: './tsconfig.json',
-  external: [
-    'astro',
-    '@astrojs/starlight',
-    'unocss',
-    'rehype',
-    'hastscript',
-    'hast-util-select',
-    'hast-util-to-string',
-    'unist-util-visit',
-    'glob',
-    'zod',
-    'node:fs',
-    'node:fs/promises',
-    'node:path',
-    'node:process',
-    'node:url',
-  ],
   esbuildPlugins: [
     copy({
       assets: {
@@ -58,12 +41,10 @@ export default defineConfig({
     await $`bun tsgo --project tsconfig.build.json`
     console.log('📦 Bundling declarations...')
     await $`bunx rollup -c`
-    // Clean up intermediate type directory in a cross-platform way
     try {
-      await $`bunx rimraf dist/types`
+      await $`rm -rf dist/types`
     }
     catch {
-      // ignore
     }
     console.log('✅ Declarations bundled.')
   },

@@ -152,7 +152,7 @@ export function resolveFolderIcon(folderName: string, isOpen: boolean) {
       return `i-material-icon-theme:${iconName.replace(/_/g, '-')}`
     }
 
-    return isOpen ? 'i-icons:folder-open' : 'i-icons:folder'
+    return isOpen ? 'i-starlight-plugin-icons:folder-open' : 'i-starlight-plugin-icons:folder'
   }
 }
 
@@ -169,10 +169,10 @@ export function resolveIcon(fileName: string | undefined, language: string | und
     }
 
     if (fileName?.endsWith('.svelte.js')) {
-      return 'i-icons:svelte-js'
+      return 'i-starlight-plugin-icons:svelte-js'
     }
     if (fileName?.endsWith('.svelte.ts')) {
-      return 'i-icons:svelte-ts'
+      return 'i-starlight-plugin-icons:svelte-ts'
     }
 
     function getIconClass(pairs: { key: string, lookup: Record<string, string> | undefined }[]): string | null {
