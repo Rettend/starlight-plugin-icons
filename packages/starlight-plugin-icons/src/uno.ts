@@ -24,7 +24,7 @@ function loadIcon(iconName: string) {
   }
 }
 
-export const presetStarlightIcons = definePreset(() => {
+export const presetStarlightIcons: ReturnType<typeof definePreset> = definePreset(() => {
   const internalIcons = presetIcons({
     collections: {
       'starlight-plugin-icons': {
@@ -43,11 +43,12 @@ export const presetStarlightIcons = definePreset(() => {
 
   const internalIconsRenamed = { ...(internalIcons as any), name: 'starlight-plugin-icons-icons' }
 
-  return {
+  const preset = {
     name: 'starlight-plugin-icons-preset',
     safelist: getMaterialIconsSafelist(),
     presets: [
       internalIconsRenamed as any,
     ],
   }
+  return preset
 })

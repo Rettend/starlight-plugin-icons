@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const StarlightIconsOptionsSchema = z
+export const StarlightIconsOptionsSchema: z.ZodType<{ sidebar?: boolean, extractSafelist?: boolean }> = z
   .object({
     /**
      * Defines whether the sidebar component is overridden.

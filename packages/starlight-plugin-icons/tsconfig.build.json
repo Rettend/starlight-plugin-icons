@@ -1,11 +1,13 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./../../tsconfig.json",
   "compilerOptions": {
+    "allowJs": false,
     "declaration": true,
-    "declarationDir": "dist/types",
-    "declarationMap": false,
-    "emitDeclarationOnly": true,
-    "noEmit": false
+    "noEmit": true,
+    "isolatedDeclarations": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/env.d.ts"
+  ]
 }

@@ -72,6 +72,13 @@ function flattenSidebar(entries: SidebarEntry[]): SidebarEntry[] {
 
 <style>
   @layer starlight.core {
+    .sidebar-icon {
+      display: inline-block;
+      font-size: var(--spi-sidebar-icon-size, 1.25rem);
+      width: 1em;
+      height: 1em;
+    }
+
     ul {
       --sl-sidebar-item-padding-inline: 0.5rem;
       list-style: none;

@@ -7,7 +7,7 @@ import { getIconDetails, resolveFolderIcon, resolveIcon } from './material-icons
 const codeBlockRegex = /```(?<lang>[a-zA-Z]\w*)?(?:\s[^\n]*?title="(?<title>[^"]+)")?/g
 const fileTreeRegex = /<FileTree>([\s\S]*?)<\/FileTree>/g
 
-export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: string) {
+export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: string): Promise<void> {
   const contentDir = path.join(rootDir, 'src/content')
   const pattern = '**/*.{md,mdx}'
   const files = globSync(pattern, { cwd: contentDir, absolute: true })

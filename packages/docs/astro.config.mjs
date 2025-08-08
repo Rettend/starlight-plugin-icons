@@ -2,7 +2,7 @@
 import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
 import { defineConfig } from 'astro/config'
-import starlightPluginIcons, { withSidebarIcons } from 'starlight-plugin-icons'
+import starlightPluginIcons, { starlightPluginIconsPlugin, withSidebarIcons } from 'starlight-plugin-icons'
 import UnoCSS from 'unocss/astro'
 
 export default defineConfig({
@@ -19,6 +19,7 @@ export default defineConfig({
     starlightPluginIcons(),
     starlight({
       title: 'starlight-plugin-icons',
+      plugins: [starlightPluginIconsPlugin()],
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/Rettend/starlight-plugin-icons' },
         { icon: 'discord', label: 'Discord', href: 'https://discord.gg/FvVaUPhj3t' },
@@ -40,6 +41,9 @@ export default defineConfig({
           label: 'Demo',
           items: [
             { icon: 'i-icons:drizzle', label: 'Drizzle', slug: 'demo/drizzle' },
+            { icon: 'i-starlight-plugin-icons:svelte-js', label: 'Svelte', slug: 'demo/drizzle' },
+            { icon: 'i-starlight-plugin-icons:folder-open', label: 'Svelte', slug: 'demo/drizzle' },
+            { icon: 'i-material-icon-theme:svelte', label: 'Svelte', slug: 'demo/drizzle' },
           ],
         },
       ]),

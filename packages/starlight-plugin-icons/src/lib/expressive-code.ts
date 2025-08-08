@@ -5,7 +5,7 @@ export function pluginIcon() {
   return {
     name: 'Plugin Icon',
     hooks: {
-      async postprocessRenderedBlock(context: any) {
+      async postprocessRenderedBlock(context: any): Promise<void> {
         const { codeBlock, renderData } = context
 
         if (!codeBlock.props.title)

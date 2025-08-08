@@ -159,7 +159,7 @@ const fileTreeProcessor = rehype()
  * @param directoryLabel The localized label for a directory.
  * @returns The processed HTML for the file tree.
  */
-export async function processFileTree(html: string, directoryLabel: string) {
+export async function processFileTree(html: string, directoryLabel: string): Promise<string> {
   const file = await fileTreeProcessor.process({ data: { directoryLabel }, value: html })
 
   return file.toString()

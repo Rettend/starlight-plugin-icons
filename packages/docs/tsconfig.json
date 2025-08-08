@@ -6,7 +6,11 @@
       "~/*": [
         "./src/*"
       ]
-    }
+    },
+    "types": [
+      "node",
+      "bun"
+    ]
   },
   "include": [
     ".astro/types.d.ts",
