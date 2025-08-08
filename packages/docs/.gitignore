@@ -22,4 +22,3 @@ pnpm-debug.log*
 
 .material-icons-cache/*
 !.material-icons-cache/material-icons-safelist.json
-!.material-icons-cache/language-map.json
