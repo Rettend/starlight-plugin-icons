@@ -9,26 +9,18 @@ import { definePreset, presetIcons } from 'unocss'
 
 function getMaterialIconsSafelist(): string[] {
   try {
-    console.log('SAFELIST: process.cwd()', process.cwd())
-
-    // Highest priority: explicit path via env var (e.g. set on CI)
     const envPath = process.env.SPI_SAFELIST_PATH
     if (envPath && fs.existsSync(envPath)) {
       const safelist = fs.readFileSync(envPath, 'utf-8')
-      console.log('SAFELIST ENV', envPath)
       return JSON.parse(safelist)
     }
 
-    // Primary location: current working directory
     const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
     if (fs.existsSync(directPath)) {
       const safelist = fs.readFileSync(directPath, 'utf-8')
-      console.log('SAFELIST 1', safelist)
       return JSON.parse(safelist)
     }
 
-    // Fallback for monorepos/CI where the working directory may be the repo root.
-    // Search for any generated safelist within the repository (excluding node_modules/.git).
     const matches = globSync('**/.material-icons-cache/material-icons-safelist.json', {
       cwd: process.cwd(),
       absolute: true,
@@ -37,12 +29,10 @@ function getMaterialIconsSafelist(): string[] {
 
     if (matches.length > 0) {
       const safelist = fs.readFileSync(matches[0]!, 'utf-8')
-      console.log('SAFELIST 2', safelist)
       return JSON.parse(safelist)
     }
   }
   catch {
-    // fallthrough to empty list
   }
 
   return []
