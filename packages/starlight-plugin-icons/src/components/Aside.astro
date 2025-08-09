@@ -1,0 +1,41 @@
+---
+import { AstroError } from 'astro/errors'
+
+const asideVariants = ['note', 'tip', 'caution', 'danger'] as const
+const defaultIconByType = {
+  note: 'i-ph:info-bold',
+  tip: 'i-ph:rocket-launch-bold',
+  caution: 'i-ph:warning-bold',
+  danger: 'i-ph:warning-octagon-bold',
+} as const
+
+interface Props {
+  type?: (typeof asideVariants)[number]
+  title?: string
+  icon?: string
+}
+
+let { type = 'note', title, icon } = Astro.props
+
+if (!asideVariants.includes(type)) {
+  throw new AstroError(
+    'Invalid `type` prop passed to the `<Aside>` component.\n',
+    `Received: ${JSON.stringify(type)}\n` + `Expected one of ${asideVariants.map((i) => JSON.stringify(i)).join(', ')}`,
+  )
+}
+
+if (!title) {
+  title = Astro.locals.t(`aside.${type}`)
+}
+
+const computedIconClass = icon || defaultIconByType[type]
+---
+
+<aside aria-label={title} class={`starlight-aside starlight-aside--${type}`}>
+  <p class="starlight-aside__title" aria-hidden="true">
+    <span class:list={[computedIconClass, 'starlight-aside__icon']}></span>{title}
+  </p>
+  <div class="starlight-aside__content">
+    <slot />
+  </div>
+</aside>

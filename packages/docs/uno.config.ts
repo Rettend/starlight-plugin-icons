@@ -17,7 +17,7 @@ export default defineConfig({
       },
       customizations: {
         iconCustomizer(collection, icon, props) {
-          if (['devicon', 'simple-icons', 'logos'].includes(collection))
+          if (['simple-icons', 'logos'].includes(collection))
             props.transform = 'scale(0.8)'
 
           if (collection === 'icons') {

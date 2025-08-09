@@ -3,9 +3,20 @@ title: Quick Start
 description: Minimal working example using the preset.
 ---
 
-Sidebar with icons
+import { Image } from 'astro:assets'
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+import Link from '~/components/Link.astro'
+import sidebarDemo from '~/assets/demo/sidebar.png'
 
-```js title="astro.config.mjs"
+Try out `starlight-plugin-icons` with these examples.
+
+## Sidebar with icons
+
+Add an `icon` property to sidebar items using an icon class.
+
+Format: `i-<collection>:<name>`
+
+```js title="astro.config.mjs" "icon: 'i-ph:rocket-launch-duotone'"
 import Icons from 'starlight-plugin-icons'
 
 export default {
@@ -26,7 +37,23 @@ export default {
 }
 ```
 
-Code block icon via title
+Result:
+
+<Image src={sidebarDemo} alt="Sidebar with icon" />
+
+<br />
+
+<Aside type="note">
+  - Make sure to install the Iconify collection that you use: <Link href="https://icones.js.org/">Icon Gallery</Link>.
+  - Want to tweak spacing or sizes? See the CSS variables in [Configuration](../guides/configuration).
+</Aside>
+
+## Code blocks with icons
+
+Once the plugin is installed, code fences automatically get a small icon.
+Icons are chosen either by the language or by the filename in the block's `title`.
+
+### Based on language
 
 Example source
 
@@ -42,14 +69,34 @@ Rendered
 console.log('hi')
 ```
 
-File tree with icons
+<br />
 
-```mdx
-<FileTree>
-  - src
-    - pages
-      - index.astro
-  - package.json
-</FileTree>
+<Aside type="tip" icon="i-ph:lightbulb-bold">
+  This uses a language-to-icon mapping from <Link href="https://github.com/material-extensions/vscode-material-icon-theme">VS Code Material Icon theme</Link>.
+</Aside>
+
+### Based on filename
+
+````mdx
+```md title="README.md"
+# README
+```
+````
+
+Rendered
+
+```md title="README.md"
+# README
 ```
 
+<br />
+
+<Aside type="tip" icon="i-ph:lightbulb-bold">
+  - To view the full list, see the `.material-icons-cache\material-icons.json` file.
+  - If no specific match is found, it falls back to the language-based icon.
+</Aside>
+
+## Next steps
+
+- Learn more about the [Sidebar](../guides/sidebar-icons) and [Code blocks](../guides/code-blocks) with icons.
+- Configure options and CSS variables: see [Configuration](../guides/configuration) and [Styling](../guides/styling).

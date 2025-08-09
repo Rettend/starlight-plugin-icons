@@ -75,6 +75,12 @@ code[dir='auto'] {
   white-space: nowrap;
 }
 
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: var(--sl-color-green-high);
+  --sl-color-asides-border: var(--sl-color-green);
+  background-color: var(--sl-color-green-low);
+}
+
 .i-icons\:drizzle {
   color: #c5f74f !important;
 }

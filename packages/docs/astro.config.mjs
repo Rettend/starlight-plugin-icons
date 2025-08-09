@@ -16,6 +16,9 @@ export default defineConfig({
   integrations: [
     UnoCSS(),
     Icons({
+      sidebar: true,
+      extractSafelist: true,
+      codeblock: true,
       starlight: {
         title: 'starlight-plugin-icons',
         social: [
@@ -31,7 +34,7 @@ export default defineConfig({
           {
             label: 'Getting Started',
             items: [
-              { icon: 'i-ph:rocket-launch-duotone', label: 'Introduction', slug: 'getting-started/introduction' },
+              { icon: 'i-ph:hand-waving-duotone', label: 'Introduction', slug: 'getting-started/introduction' },
               { icon: 'i-ph:package-duotone', label: 'Installation', slug: 'getting-started/installation' },
               { icon: 'i-ph:play-duotone', label: 'Quick Start', slug: 'getting-started/quick-start' },
             ],
@@ -39,12 +42,13 @@ export default defineConfig({
           {
             label: 'Guides',
             items: [
-              { icon: 'i-ph:gear-six-duotone', label: 'Configuration', slug: 'guides/configuration' },
               { icon: 'i-ph:list-bullets-duotone', label: 'Sidebar Icons', slug: 'guides/sidebar-icons' },
               { icon: 'i-ph:code-block-duotone', label: 'Code Block Icons', slug: 'guides/codeblock-icons' },
-              { icon: 'i-logos:unocss', label: 'UnoCSS Preset', slug: 'guides/unocss-preset' },
-              { icon: 'i-ph:shield-check-duotone', label: 'Safelist & Caching', slug: 'guides/safelist' },
+              { icon: 'i-ph:gear-six-duotone', label: 'Configuration', slug: 'guides/configuration' },
               { icon: 'i-ph:paint-brush-broad-duotone', label: 'Styling', slug: 'guides/styling' },
+              { icon: 'i-logos:unocss', label: 'UnoCSS Preset', slug: 'guides/unocss-preset' },
+              { icon: 'i-devicon:tailwindcss', label: 'TailwindCSS Plugin', slug: 'guides/tailwindcss-plugin' },
+              { icon: 'i-ph:shield-check-duotone', label: 'Safelist & Caching', slug: 'guides/safelist' },
             ],
           },
           {
@@ -53,7 +57,6 @@ export default defineConfig({
               { icon: 'i-ph:link-simple-duotone', label: 'IconLink', slug: 'components/icon-link' },
               { icon: 'i-ph:rectangle-duotone', label: 'Card', slug: 'components/card' },
               { icon: 'i-ph:files-duotone', label: 'FileTree', slug: 'components/file-tree' },
-
             ],
           },
           {

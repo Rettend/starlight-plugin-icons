@@ -4,6 +4,7 @@ description: Install and add the plugin to your Astro + Starlight project.
 ---
 
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+import Link from '~/components/Link.astro'
 
 <Steps>
 
@@ -76,6 +77,59 @@ import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
     export default defineConfig({
       presets: [presetStarlightIcons()],
+    })
+    ```
+
+4. ##### Install Iconify collections
+
+    Install the Iconify collections you want to use.
+
+    You can find all the icons here: <Link href="https://icones.js.org/">Icon Gallery</Link>
+
+    <Tabs syncKey="pkg">
+      <TabItem label="npm">
+        ```sh
+        npm i -D @iconify-json/{collection}
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm add -D @iconify-json/{collection}
+        ```
+      </TabItem>
+      <TabItem label="yarn">
+        ```sh
+        yarn add -D @iconify-json/{collection}
+        ```
+      </TabItem>
+      <TabItem label="bun">
+        ```sh
+        bun add -D @iconify-json/{collection}
+        ```
+      </TabItem>
+      <TabItem label="ni">
+        ```sh
+        ni -D @iconify-json/{collection}
+        ```
+      </TabItem>
+    </Tabs>
+
+5. ##### Enable the features
+
+    See the specific guides for each feature:
+    - [Sidebar Icons](../guides/sidebar-icons)
+    - [Code Block Icons](../../guides/codeblock-icons)
+
+    This enables all the features of the plugin:
+
+    <br />
+
+    ```js title="astro.config.mjs" ins={2-4}
+    Icons({
+      sidebar: true,
+      extractSafelist: true,
+      codeblock: true,
+      starlight: { ... },
     })
     ```
 
