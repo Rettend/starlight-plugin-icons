@@ -3,7 +3,7 @@ title: Configuration
 description: How to configure the starlight-plugin-icons for your Astro project.
 ---
 
-Preset configuration
+Use the all-in-one `Icons` integration.
 
 ```js title="astro.config.mjs"
 import Icons from 'starlight-plugin-icons'
@@ -14,7 +14,7 @@ export default {
       // Toggle features
       sidebar: true,          // override Sidebar component
       codeblock: true,        // code block icons + CSS
-      extractSafelist: true,  // scan content for Material Icons safelist
+      extractSafelist: true,  // scan content for icons safelist
 
       // Pass-through Starlight config (icon field supported in sidebar)
       starlight: {
@@ -27,7 +27,7 @@ export default {
 }
 ```
 
-Using plugins manually
+Or specify the Astro integration and the Starlight plugin manually.
 
 ```js title="astro.config.mjs"
 import starlight from '@astrojs/starlight'
