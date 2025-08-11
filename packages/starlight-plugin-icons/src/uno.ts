@@ -15,13 +15,13 @@ function getMaterialIconsSafelist(): string[] {
       return JSON.parse(safelist)
     }
 
-    const directPath = path.join(process.cwd(), '.material-icons-cache', 'material-icons-safelist.json')
+    const directPath = path.join(process.cwd(), '.starlight-icons', 'safelist.json')
     if (fs.existsSync(directPath)) {
       const safelist = fs.readFileSync(directPath, 'utf-8')
       return JSON.parse(safelist)
     }
 
-    const matches = globSync('**/.material-icons-cache/material-icons-safelist.json', {
+    const matches = globSync('**/.starlight-icons/safelist.json', {
       cwd: process.cwd(),
       absolute: true,
       ignore: ['**/node_modules/**', '**/.git/**'],

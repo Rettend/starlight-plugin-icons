@@ -36,7 +36,6 @@ export default defineConfig({
             items: [
               { icon: 'i-ph:hand-waving-duotone', label: 'Introduction', slug: 'getting-started/introduction' },
               { icon: 'i-ph:package-duotone', label: 'Installation', slug: 'getting-started/installation' },
-              { icon: 'i-ph:play-duotone', label: 'Quick Start', slug: 'getting-started/quick-start' },
             ],
           },
           {
@@ -54,9 +53,9 @@ export default defineConfig({
           {
             label: 'Components',
             items: [
-              { icon: 'i-ph:link-simple-duotone', label: 'IconLink', slug: 'components/icon-link' },
               { icon: 'i-ph:rectangle-duotone', label: 'Card', slug: 'components/card' },
               { icon: 'i-ph:files-duotone', label: 'FileTree', slug: 'components/file-tree' },
+              { icon: 'i-ph:link-simple-duotone', label: 'IconLink', slug: 'components/icon-link' },
             ],
           },
           {

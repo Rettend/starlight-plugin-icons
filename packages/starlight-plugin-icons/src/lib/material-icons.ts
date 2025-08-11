@@ -2,7 +2,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import process from 'node:process'
 
-const CACHE_DIR = path.join(process.cwd(), '.material-icons-cache')
+const CACHE_DIR = path.join(process.cwd(), '.starlight-icons')
 const VERSION_URL = 'https://raw.githubusercontent.com/Rettend/github-material-icon-theme/main/download/version.txt'
 const LANGUAGE_MAP_URL = 'https://raw.githubusercontent.com/Rettend/github-material-icon-theme/main/download/language-map.json'
 const MATERIAL_ICONS_URL = 'https://raw.githubusercontent.com/Rettend/github-material-icon-theme/main/download/material-icons.json'

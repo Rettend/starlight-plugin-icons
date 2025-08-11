@@ -3,7 +3,7 @@ title: UnoCSS Preset
 description: Use the preset to include internal icons and safelist.
 ---
 
-Add the preset
+The preset loads the generated safelist from the cache file.
 
 ```ts title="uno.config.ts"
 import { defineConfig } from 'unocss'
@@ -13,9 +13,3 @@ export default defineConfig({
   presets: [presetStarlightIcons()],
 })
 ```
-
-What it does
-
-- Registers a small internal icon collection (folders, svelte-js/ts).
-- Loads a generated Material Icons safelist so Purge does not strip used icons.
-

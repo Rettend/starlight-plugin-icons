@@ -3,9 +3,111 @@ title: Sidebar Icons
 description: Add icons to Starlight's sidebar entries.
 ---
 
-Add an `icon` class to each entry. The preset maps it to the overridden Sidebar component.
+import { Image } from 'astro:assets'
+import sidebarDemo from '~/assets/demo/sidebar.png'
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
-```js title="astro.config.mjs"
+
+<Steps>
+
+1. ##### Enable the sidebar feature
+
+    ```js title="astro.config.mjs" ins={2}
+    Icons({
+      sidebar: true,
+      starlight: { ... },
+    })
+    ```
+
+2. ##### Configure UnoCSS to discover the icons
+
+    Set `extractSafelist: true` to automatically generate a safelist,
+    or if you prefer not to do that, you need to configure UnoCSS to discover the icons.
+
+    <Tabs syncKey="safelist-strategy">
+      <TabItem label="Automatic safelist">
+
+      Enable extraction and add the cache to `.gitignore`.
+
+      ```js title="astro.config.mjs" ins={3}
+      Icons({
+        sidebar: true,
+        extractSafelist: true,
+        starlight: { ... },
+      })
+      ```
+
+      ```txt title=".gitignore"
+      .starlight-icons
+      ```
+
+      </TabItem>
+      <TabItem label="Configure UnoCSS">
+
+      Point UnoCSS to your `astro.config.mjs` so icon classes in the sidebar are extracted.
+
+      ```ts title="uno.config.ts" ins={2-11} "|mjs" "'astro.config.mjs'"
+      export default defineConfig({
+        content: {
+          pipeline: {
+            include: [
+              /\.(vue|svelte|[jt]sx|vine\.ts|mdx?|astro|elm|php|phtml|html|mjs)($|\?)/,
+            ],
+          },
+          filesystem: [
+            'astro.config.mjs',
+          ],
+        },
+      })
+      ```
+
+      </TabItem>
+    </Tabs>
+
+3. ##### Install an Icon collection
+
+    Choose any collection (e.g. `ph`). See the <a href="https://icones.js.org/">Icon Gallery</a>.
+
+    <Tabs syncKey="pkg-any-collection">
+      <TabItem label="npm">
+        ```sh
+        npm i -D @iconify-json/ph
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm add -D @iconify-json/ph
+        ```
+      </TabItem>
+      <TabItem label="yarn">
+        ```sh
+        yarn add -D @iconify-json/ph
+        ```
+      </TabItem>
+      <TabItem label="bun">
+        ```sh
+        bun add -D @iconify-json/ph
+        ```
+      </TabItem>
+      <TabItem label="ni">
+        ```sh
+        ni -D @iconify-json/ph
+        ```
+      </TabItem>
+    </Tabs>
+
+</Steps>
+
+## Example
+
+Add an `icon` field to each sidebar entry.
+
+Format: `i-<collection>:<name>`
+
+<br />
+
+```js title="astro.config.mjs" "icon: 'i-ph:rocket-launch-duotone'"
 Icons({
   starlight: {
     sidebar: [
@@ -20,15 +122,23 @@ Icons({
 })
 ```
 
-Tips
+Rendered
 
-- Use Iconify class names (e.g. `i-ph:*`, `i-material-icon-theme:*`).
-- Size and gap are customizable: `--spi-sidebar-icon-size`, `--spi-sidebar-icon-gap`.
+<Image src={sidebarDemo} alt="Sidebar with icon" />
 
-Sidebar override details
+<Aside type="note">
+  - Install the Iconify collection you use: [Icon Gallery](https://icones.js.org/).
+  - Want to tweak spacing or sizes? See [Configuration](./guides/configuration).
+</Aside>
 
-The plugin swaps Starlight's `Sidebar` with a compatible component that reads `attrs["data-icon"]` and renders an icon span before the label. Styling hooks:
+## Customize
 
-- `.sidebar-icon` for the injected icon span
-- CSS vars: `--spi-sidebar-icon-size`, `--spi-sidebar-icon-gap`
+Set CSS variables to configure sidebar icon size and spacing.
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-sidebar-icon-size: 1.25rem;
+  --spi-sidebar-icon-gap: 0.25rem;
+}
+```
 

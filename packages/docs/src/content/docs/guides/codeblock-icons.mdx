@@ -3,12 +3,68 @@ title: Code Block Icons
 description: Automatic Material Icons for code blocks.
 ---
 
-How it works
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+import Link from '~/components/Link.astro'
+import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
-- An Expressive Code hook inspects code blocks.
-- If the block has a `title` (e.g. `title="app.ts"`) or a known `language`, the plugin resolves a Material Icon and prepends it to the caption.
+Once the plugin is installed, code fences automatically get a small icon.
+Icons are chosen either by the language or by the filename in the block's `title`.
 
-Usage
+<br />
+
+<Steps>
+
+1. ##### Enable the features
+
+    ```js title="astro.config.mjs" ins={2-3}
+    Icons({
+      codeblock: true,
+      extractSafelist: true,
+      starlight: { ... },
+    })
+    ```
+
+2. ##### Add the cache to `.gitignore`
+
+    ```txt title=".gitignore"
+    .starlight-icons
+    ```
+
+3. ##### Install the Material Icon Theme collection
+
+    <Tabs syncKey="pkg-material-icons">
+      <TabItem label="npm">
+        ```sh
+        npm i -D @iconify-json/material-icon-theme
+        ```
+      </TabItem>
+      <TabItem label="pnpm">
+        ```sh
+        pnpm add -D @iconify-json/material-icon-theme
+        ```
+      </TabItem>
+      <TabItem label="yarn">
+        ```sh
+        yarn add -D @iconify-json/material-icon-theme
+        ```
+      </TabItem>
+      <TabItem label="bun">
+        ```sh
+        bun add -D @iconify-json/material-icon-theme
+        ```
+      </TabItem>
+      <TabItem label="ni">
+        ```sh
+        ni -D @iconify-json/material-icon-theme
+        ```
+      </TabItem>
+    </Tabs>
+
+</Steps>
+
+## Example
+
+### Based on language
 
 Example source
 
@@ -24,8 +80,41 @@ Rendered
 console.log('hi')
 ```
 
-Notes
+<br />
 
-- The CSS for spacing is included via `starlight-plugin-icons/styles/main.css` when the plugin is enabled.
-- You can disable all codeblock features by setting `codeblock: false` in options.
+<Aside type="tip" icon="i-ph:lightbulb-bold">
+  This uses a language-to-icon mapping from <Link href="https://github.com/material-extensions/vscode-material-icon-theme">VS Code Material Icon theme</Link>.
+</Aside>
 
+### Based on filename
+
+````mdx
+```md title="README.md"
+# README
+```
+````
+
+Rendered
+
+```md title="README.md"
+# README
+```
+
+<br />
+
+<Aside type="tip" icon="i-ph:lightbulb-bold">
+  - To view the full list, see the `.starlight-icons/material-icons.json` file.
+  - If no specific match is found, it falls back to the language-based icon.
+</Aside>
+
+## Customize
+
+Set CSS variables to configure codeblock icons.
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-codeblock-icon-size: 1.2rem;
+  --spi-codeblock-icon-gap-right: 0.5rem;
+  --spi-codeblock-icon-gap-left: 0.5rem;
+}
+```

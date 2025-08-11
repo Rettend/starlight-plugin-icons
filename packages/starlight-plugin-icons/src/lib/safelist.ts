@@ -108,8 +108,8 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
   }
 
   const newSafelist = [...usedIcons].sort()
-  const cacheDir = path.join(rootDir, '.material-icons-cache')
-  const safelistPath = path.join(cacheDir, 'material-icons-safelist.json')
+  const cacheDir = path.join(rootDir, '.starlight-icons')
+  const safelistPath = path.join(cacheDir, 'safelist.json')
   const newSafelistJSON = JSON.stringify(newSafelist, null, 2)
 
   try {

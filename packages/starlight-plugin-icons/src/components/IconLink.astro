@@ -13,7 +13,15 @@ const { href, icon, title, flat = false } = Astro.props
   <div class="icon">
     <span class={icon}></span>
   </div>
-  {title && <span class="title">{title}</span>}
+  {
+    title ? (
+      <span class="title">{title}</span>
+    ) : (
+      <span class="title">
+        <slot />
+      </span>
+    )
+  }
 </a>
 
 <style>
