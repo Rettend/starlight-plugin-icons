@@ -1,7 +1,7 @@
 {
   "name": "starlight-plugin-icons",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "packageManager": "bun@1.2.19",
   "description": "Add icons to Astro Starlight: sidebar, codeblocks, file tree",
   "license": "MIT",
@@ -37,8 +37,6 @@
   "scripts": {
     "prepublishOnly": "node -e \"require('fs').copyFileSync('../../README.md', 'README.md')\"",
     "postpublish": "node -e \"require('fs').unlinkSync('README.md')\"",
-    "dev": "echo skip build (TS sources)",
-    "build": "echo skip build (TS sources)",
     "lint": "eslint . --fix",
     "update:deps": "taze latest -wr",
     "release": "bumpp && npm publish"
