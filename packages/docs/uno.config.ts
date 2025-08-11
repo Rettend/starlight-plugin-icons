@@ -28,15 +28,14 @@ export default defineConfig({
       },
     }),
   ],
-  content: {
-    pipeline: {
-      include: [
-        /\.(vue|svelte|[jt]sx|vine.ts|mdx?|astro|elm|php|phtml|html|mjs)($|\?)/,
-      ],
-    },
-    filesystem: [
-      'astro.config.mjs',
-      'src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,mjs}',
-    ],
-  },
+  // content: {
+  //   pipeline: {
+  //     include: [
+  //       /\.(vue|svelte|[jt]sx|vine.ts|mdx?|astro|elm|php|phtml|html|mjs)($|\?)/,
+  //     ],
+  //   },
+  //   filesystem: [
+  //     'astro.config.mjs',
+  //   ],
+  // },
 })

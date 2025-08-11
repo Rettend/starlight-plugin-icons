@@ -52,18 +52,34 @@ export function starlightIconsIntegration(options: StarlightIconsOptions = {}): 
   return {
     name: 'starlight-plugin-icons',
     hooks: {
-      'astro:build:start': async ({ logger }) => {
+      'astro:config:setup': async ({ logger }) => {
         if (!parsedOptions.extractSafelist)
           return
         logger.info('Generating icon safelist...')
         await generateSafelist(logger, process.cwd())
       },
-      'astro:server:start': async ({ logger }) => {
-        if (!parsedOptions.extractSafelist)
-          return
-        logger.info('Generating icon safelist...')
-        await generateSafelist(logger, process.cwd())
-      },
+      // 'astro:server:setup': async ({ logger, server }) => {
+      //   if (!parsedOptions.extractSafelist)
+      //     return
+
+      //   const updated = await generateSafelist(logger, process.cwd())
+
+      //   if (updated) {
+      //     const unoApi = (server.config.plugins.find(p => p.name === 'unocss:api') as any)?.api
+      //     if (unoApi?.getContext) {
+      //       try {
+      //         await unoApi.getContext().reloadConfig()
+      //         logger.info('Icon safelist updated. UnoCSS config reloaded.')
+      //       }
+      //       catch (e) {
+      //         logger.warn(`Failed to reload UnoCSS config: ${(e as Error)?.message || e}`)
+      //       }
+      //     }
+      //     else {
+      //       logger.warn('UnoCSS plugin API not found; please restart the dev server to apply the updated safelist.')
+      //     }
+      //   }
+      // },
     },
   }
 }

@@ -6,8 +6,9 @@ import { getIconDetails, resolveFolderIcon, resolveIcon } from './material-icons
 
 const codeBlockRegex = /```(?<lang>[a-zA-Z]\w*)?(?:\s[^\n]*?title="(?<title>[^"]+)")?/g
 const fileTreeRegex = /<FileTree>([\s\S]*?)<\/FileTree>/g
+const iconClassRegex = /i-[a-z0-9-]+:[a-z0-9-:./]+/gi
 
-export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: string): Promise<void> {
+export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: string): Promise<boolean> {
   const contentDir = path.join(rootDir, 'src/content')
   const pattern = '**/*.{md,mdx}'
   const files = globSync(pattern, { cwd: contentDir, absolute: true })
@@ -86,11 +87,49 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
     }
   }
 
+  // sidebar icon classes
+  const astroConfigs = [
+    'astro.config.mjs',
+    'astro.config.js',
+    'astro.config.ts',
+    'astro.config.mts',
+    'astro.config.cjs',
+    'astro.config.cts',
+  ]
+  for (const cfg of astroConfigs) {
+    const cfgPath = path.join(rootDir, cfg)
+    try {
+      const source = await fs.readFile(cfgPath, 'utf-8')
+      const matches = source.match(iconClassRegex) || []
+      for (const cls of matches) usedIcons.add(cls)
+    }
+    catch {
+    }
+  }
+
+  const newSafelist = [...usedIcons].sort()
   const cacheDir = path.join(rootDir, '.material-icons-cache')
   const safelistPath = path.join(cacheDir, 'material-icons-safelist.json')
+  const newSafelistJSON = JSON.stringify(newSafelist, null, 2)
+
+  try {
+    const currentSafelist = await fs.readFile(safelistPath, 'utf-8')
+    if (currentSafelist === newSafelistJSON) {
+      logger.info('Icon safelist is up to date.')
+      return false
+    }
+  }
+  catch {
+    // If the file doesn't exist, we'll create it.
+    // If there are no icons to add, we don't need to do anything.
+    if (newSafelist.length === 0) {
+      return false
+    }
+  }
 
   await fs.mkdir(cacheDir, { recursive: true })
-  await fs.writeFile(safelistPath, JSON.stringify([...usedIcons].sort(), null, 2), 'utf-8')
+  await fs.writeFile(safelistPath, newSafelistJSON, 'utf-8')
 
   logger.info(`Generated icon safelist with ${usedIcons.size} icons.`)
+  return true
 }

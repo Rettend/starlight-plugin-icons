@@ -207,6 +207,15 @@ export function resolveIcon(fileName: string | undefined, language: string | und
       if (iconClass) {
         return iconClass
       }
+
+      // handle files starting with a dot
+      if (!lowerFileName.startsWith('.')) {
+        const dotPrefixed = `.${lowerFileName}`
+        const dotIconName = materialIcons.fileNames[dotPrefixed]
+        if (dotIconName && materialIcons.iconDefinitions[dotIconName]) {
+          return `i-material-icon-theme:${dotIconName.replace(/_/g, '-')}`
+        }
+      }
     }
 
     if (language && materialIcons.languageIds[language]) {

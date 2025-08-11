@@ -7,6 +7,7 @@ import { Image } from 'astro:assets'
 import Aside from 'starlight-plugin-icons/components/Aside.astro'
 import Link from '~/components/Link.astro'
 import sidebarDemo from '~/assets/demo/sidebar.png'
+import { Steps } from '@astrojs/starlight/components'
 
 Try out `starlight-plugin-icons` with these examples.
 
@@ -22,6 +23,7 @@ import Icons from 'starlight-plugin-icons'
 export default {
   integrations: [
     Icons({
+      sidebar: true,
       starlight: {
         sidebar: [
           {
@@ -45,13 +47,34 @@ Result:
 
 <Aside type="note">
   - Make sure to install the Iconify collection that you use: <Link href="https://icones.js.org/">Icon Gallery</Link>.
-  - Want to tweak spacing or sizes? See the CSS variables in [Configuration](../guides/configuration).
+  - Want to tweak spacing or sizes? See the CSS variables in [Configuration](./guides/configuration).
 </Aside>
 
 ## Code blocks with icons
 
 Once the plugin is installed, code fences automatically get a small icon.
 Icons are chosen either by the language or by the filename in the block's `title`.
+
+<Steps>
+
+1. ##### Enable the features
+
+    ```js title="astro.config.mjs" ins={2-3}
+    Icons({
+      codeblock: true,
+      extractSafelist: true,
+      starlight: { ... },
+    })
+    ```
+
+2. ##### Add the cache to `.gitignore`
+
+    ```txt title=".gitignore"
+    .material-icons-cache/*
+    !.material-icons-cache/material-icons-safelist.json
+    ```
+
+</Steps>
 
 ### Based on language
 
@@ -98,5 +121,5 @@ Rendered
 
 ## Next steps
 
-- Learn more about the [Sidebar](../guides/sidebar-icons) and [Code blocks](../guides/code-blocks) with icons.
-- Configure options and CSS variables: see [Configuration](../guides/configuration) and [Styling](../guides/styling).
+- Learn more about the [Sidebar](./guides/sidebar-icons) and [Code blocks](./guides/code-blocks) with icons.
+- Configure options and CSS variables: see [Configuration](./guides/configuration) and [Styling](./guides/styling).
