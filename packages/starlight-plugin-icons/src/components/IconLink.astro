@@ -4,28 +4,32 @@ interface Props {
   href?: string
   title?: string
   flat?: boolean
+  class?: string
 }
 
-const { href, icon, title, flat = false } = Astro.props
+const { href, icon, title, flat = false, class: className } = Astro.props
 ---
 
-<a href={href} class={`icon-link-card ${flat ? 'flat' : 'enhanced'}`}>
-  <div class="icon">
+<a
+  href={href}
+  class:list={['starlight-iconlink', flat ? 'starlight-iconlink--flat' : 'starlight-iconlink--enhanced', className]}
+>
+  <div class="starlight-iconlink__icon">
     <span class={icon}></span>
   </div>
   {
     title ? (
-      <span class="title">{title}</span>
+      <p class="starlight-iconlink__title">{title}</p>
     ) : (
-      <span class="title">
+      <p class="starlight-iconlink__title">
         <slot />
-      </span>
+      </p>
     )
   }
 </a>
 
 <style>
-  .icon-link-card {
+  .starlight-iconlink {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,22 +49,22 @@ const { href, icon, title, flat = false } = Astro.props
     height: var(--spi-iconlink-height, 8rem);
   }
 
-  .icon-link-card.flat {
+  .starlight-iconlink--flat {
     border: 1px solid var(--sl-color-gray-5);
   }
 
-  .icon-link-card.flat:hover,
-  .icon-link-card.flat:focus {
+  .starlight-iconlink--flat:hover,
+  .starlight-iconlink--flat:focus {
     border-color: var(--sl-color-accent);
     background: color-mix(in srgb, var(--sl-color-accent-low) 20%, transparent);
   }
 
-  html[data-theme='light'] .icon-link-card.flat:hover,
-  html[data-theme='light'] .icon-link-card.flat:focus {
+  html[data-theme='light'] .starlight-iconlink--flat:hover,
+  html[data-theme='light'] .starlight-iconlink--flat:focus {
     background: color-mix(in srgb, var(--sl-color-accent-low) 10%, transparent);
   }
 
-  .icon-link-card.enhanced {
+  .starlight-iconlink--enhanced {
     border: 1px solid transparent;
     background-origin: border-box;
     background-image:
@@ -70,7 +74,7 @@ const { href, icon, title, flat = false } = Astro.props
     box-shadow: 0 2px 5px -3px #ffffff50;
   }
 
-  html[data-theme='light'] .icon-link-card.enhanced {
+  html[data-theme='light'] .starlight-iconlink--enhanced {
     border: 1px solid transparent;
     background-origin: border-box;
     background-image:
@@ -85,8 +89,8 @@ const { href, icon, title, flat = false } = Astro.props
     color: var(--sl-color-gray-5);
   }
 
-  .icon-link-card.enhanced:hover,
-  .icon-link-card.enhanced:focus {
+  .starlight-iconlink--enhanced:hover,
+  .starlight-iconlink--enhanced:focus {
     border-color: var(--sl-color-gray-3);
     box-shadow:
       inset 0 -10px 10px -5px color-mix(in srgb, var(--sl-color-accent) 10%, transparent),
@@ -95,8 +99,8 @@ const { href, icon, title, flat = false } = Astro.props
       0 10px 10px -5px color-mix(in srgb, var(--sl-color-accent) 10%, transparent);
   }
 
-  html[data-theme='light'] .icon-link-card.enhanced:hover,
-  html[data-theme='light'] .icon-link-card.enhanced:focus {
+  html[data-theme='light'] .starlight-iconlink--enhanced:hover,
+  html[data-theme='light'] .starlight-iconlink--enhanced:focus {
     background-image:
       linear-gradient(
         to top in oklab,
@@ -107,21 +111,22 @@ const { href, icon, title, flat = false } = Astro.props
     border-color: var(--sl-color-gray-4);
   }
 
-  .icon-link-card span {
+  .starlight-iconlink__title {
+    margin: 0;
     font-weight: 600;
     color: var(--sl-color-gray-1);
   }
 
-  html[data-theme='light'] .icon-link-card span {
+  html[data-theme='light'] .starlight-iconlink__title {
     color: var(--sl-color-gray-1);
   }
 
-  .icon-link-card:hover span,
-  .icon-link-card:focus span {
+  .starlight-iconlink:hover .starlight-iconlink__title,
+  .starlight-iconlink:focus .starlight-iconlink__title {
     color: var(--sl-color-white);
   }
 
-  .icon-link-card .icon {
+  .starlight-iconlink__icon {
     width: var(--spi-iconlink-icon-size, 3rem);
     height: var(--spi-iconlink-icon-size, 3rem);
     margin: 0 auto;
@@ -130,7 +135,7 @@ const { href, icon, title, flat = false } = Astro.props
     justify-content: center;
   }
 
-  .icon-link-card .icon span {
+  .starlight-iconlink__icon span {
     width: 100%;
     height: 100%;
     font-size: var(--spi-iconlink-icon-size, 3rem);

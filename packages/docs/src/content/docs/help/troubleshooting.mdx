@@ -3,17 +3,35 @@ title: Troubleshooting
 description: Fix common issues with icons and the safelist.
 ---
 
-Missing icons
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
 
-- Ensure UnoCSS is installed and enabled.
-- Verify the icon class exists (e.g. `i-ph:*`, `i-material-icon-theme:*`).
+#### Missing icons
 
-Safelist not applied
+- Verify the icon collections are installed.
+- Ensure UnoCSS is installed with the correct presets. It's recommended to also use `presetWind3()`
+- Verify that icons have non-zero `width` and `height` or `font-size`.
+- Check that you are using the correct icon class syntax: `i-{collection}:{icon}`.
 
-- Check `.starlight-icons/safelist.json` exists after dev/build.
+<Aside type="caution">
+  Other icon class syntaxes are not supported currently.
+</Aside>
+
+#### Safelist not applied
+
+- Check `.starlight-icons/safelist.json` exists after dev/build and contains the correct icons.
 - Set `SPI_SAFELIST_PATH` to a custom safelist if your content folder is nonstandard.
 
-Network fetch errors
+#### Network fetch errors
 
-- The plugin downloads Material Icons metadata on first run. If offline, it falls back without icons.
+- The plugin downloads Material Icons metadata on first run.
 
+#### Sidebar icons not working on Cloudflare
+
+I'm not sure what the issue is, but Cloudflare Workers don't load the newly generated safelist during deployment build.
+
+The fix is to commit the safelist to the repo:
+
+```txt title=".gitignore"
+.starlight-icons/*
+!.starlight-icons/safelist.json
+```

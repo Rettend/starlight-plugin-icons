@@ -1,9 +1,10 @@
 import fs from 'node:fs/promises'
 import { presetStarlightIcons } from 'starlight-plugin-icons/uno'
-import { defineConfig, presetIcons } from 'unocss'
+import { defineConfig, presetIcons, presetWind3 } from 'unocss'
 
 export default defineConfig({
   presets: [
+    presetWind3(),
     presetStarlightIcons(),
     presetIcons({
       collections: {
@@ -28,14 +29,4 @@ export default defineConfig({
       },
     }),
   ],
-  // content: {
-  //   pipeline: {
-  //     include: [
-  //       /\.(vue|svelte|[jt]sx|vine.ts|mdx?|astro|elm|php|phtml|html|mjs)($|\?)/,
-  //     ],
-  //   },
-  //   filesystem: [
-  //     'astro.config.mjs',
-  //   ],
-  // },
 })

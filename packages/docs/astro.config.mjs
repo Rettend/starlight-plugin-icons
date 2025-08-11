@@ -45,9 +45,9 @@ export default defineConfig({
               { icon: 'i-ph:code-block-duotone', label: 'Code Block Icons', slug: 'guides/codeblock-icons' },
               { icon: 'i-ph:gear-six-duotone', label: 'Configuration', slug: 'guides/configuration' },
               { icon: 'i-ph:paint-brush-broad-duotone', label: 'Styling', slug: 'guides/styling' },
+              { icon: 'i-ph:shield-check-duotone', label: 'Safelist & Caching', slug: 'guides/safelist' },
               { icon: 'i-logos:unocss', label: 'UnoCSS Preset', slug: 'guides/unocss-preset' },
               { icon: 'i-devicon:tailwindcss', label: 'TailwindCSS Plugin', slug: 'guides/tailwindcss-plugin' },
-              { icon: 'i-ph:shield-check-duotone', label: 'Safelist & Caching', slug: 'guides/safelist' },
             ],
           },
           {
@@ -60,18 +60,9 @@ export default defineConfig({
             ],
           },
           {
-            label: 'Reference',
-            items: [
-              { icon: 'i-ph:book-open-text-duotone', label: 'API', slug: 'reference/api' },
-              { icon: 'i-ph:sliders-duotone', label: 'Options', slug: 'reference/options' },
-              { icon: 'i-ph:brackets-curly-duotone', label: 'Types', slug: 'reference/types' },
-            ],
-          },
-          {
             label: 'Recipes',
             items: [
-              { icon: 'i-ph:magic-wand-duotone', label: 'Custom Icons', slug: 'recipes/custom-icons' },
-              { icon: 'i-ph:git-branch-duotone', label: 'Monorepo Setup', slug: 'recipes/monorepo' },
+              { icon: 'i-ph:magic-wand-duotone', label: 'Customizing Icons', slug: 'recipes/custom-icons' },
             ],
           },
           {

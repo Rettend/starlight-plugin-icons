@@ -80,15 +80,3 @@ code[dir='auto'] {
   --sl-color-asides-border: var(--sl-color-green);
   background-color: var(--sl-color-green-low);
 }
-
-.i-icons\:drizzle {
-  color: #c5f74f !important;
-}
-
-html[data-theme='light'] .i-icons\:drizzle {
-  color: var(--sl-color-white) !important;
-}
-
-a[aria-current='page'] > .i-icons\:drizzle {
-  color: var(--sl-color-text-invert) !important;
-}
