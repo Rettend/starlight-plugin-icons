@@ -87,7 +87,7 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
     }
   }
 
-  // sidebar icon classes
+  // Sidebar icon classes
   const astroConfigs = [
     'astro.config.mjs',
     'astro.config.js',
@@ -120,8 +120,6 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
     }
   }
   catch {
-    // If the file doesn't exist, we'll create it.
-    // If there are no icons to add, we don't need to do anything.
     if (newSafelist.length === 0) {
       return false
     }
