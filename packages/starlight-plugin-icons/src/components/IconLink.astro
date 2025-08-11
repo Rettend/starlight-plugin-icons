@@ -89,10 +89,14 @@ const { href, icon, title, flat = false, class: className } = Astro.props
     background-image:
       linear-gradient(
         to top in oklab,
-        color-mix(in oklab, var(--sl-color-accent-low) 5%, white) 0%,
-        color-mix(in oklab, var(--sl-color-gray-6) 5%, white) 100%
+        color-mix(in oklab, var(--sl-color-white) 5%, white) 0%,
+        color-mix(in oklab, var(--sl-color-black) 60%, white) 50%
       ),
-      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-6) 17%, transparent), var(--sl-color-gray-6));
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--sl-color-gray-6) 75%, transparent),
+        color-mix(in oklab, var(--sl-color-gray-6) 100%, transparent)
+      );
     background-clip: padding-box, border-box;
     box-shadow: 0 2px 5px -3px #ffffff50;
     color: var(--sl-color-gray-5);
@@ -110,13 +114,6 @@ const { href, icon, title, flat = false, class: className } = Astro.props
 
   html[data-theme='light'] .starlight-iconlink--enhanced:hover,
   html[data-theme='light'] .starlight-iconlink--enhanced:focus {
-    background-image:
-      linear-gradient(
-        to top in oklab,
-        color-mix(in oklab, var(--sl-color-accent-low) 10%, white) 0%,
-        color-mix(in oklab, var(--sl-color-gray-6) 40%, white) 100%
-      ),
-      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-6) 17%, transparent), var(--sl-color-gray-6));
     border-color: var(--sl-color-gray-4);
   }
 
