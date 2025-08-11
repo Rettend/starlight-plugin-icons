@@ -54,7 +54,8 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
           continue
         }
 
-        const entryName = line.content.substring(2).replace(/`/g, '').split(' ')[0]?.trim()
+        const rawEntry = line.content.substring(2).split(' ')[0] ?? ''
+        const entryName = normalizeFileTreeEntry(rawEntry)
         if (!entryName || ['...', '…'].includes(entryName)) {
           continue
         }
@@ -130,4 +131,18 @@ export async function generateSafelist(logger: AstroIntegrationLogger, rootDir: 
 
   logger.info(`Generated icon safelist with ${usedIcons.size} icons.`)
   return true
+}
+
+/**
+ * Normalize a raw FileTree entry label into a filename/folder name we can resolve icons for.
+ * - Strips inline code backticks
+ * - Removes surrounding Markdown emphasis/strong markers (*, **, _, __)
+ */
+function normalizeFileTreeEntry(input: string): string {
+  let name = input.replace(/`/g, '').trim()
+  name = name.replace(/^\*\*(.+)\*\*$/, '$1')
+  name = name.replace(/^__(.+)__$/, '$1')
+  name = name.replace(/^\*(.+)\*$/, '$1')
+  name = name.replace(/^_(.+)_$/, '$1')
+  return name
 }

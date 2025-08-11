@@ -1,0 +1,92 @@
+---
+title: Aside
+description: A callout box with type-based styling and optional icon.
+---
+
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+
+Example source
+
+```mdx title="page.mdx"
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+
+<Aside type="note">
+  Helpful tip content.
+  You can use <span class="i-ph:markdown-logo-bold"></span> **Markdown** inside.
+</Aside>
+```
+
+Rendered
+
+<Aside type="note">
+  Helpful note content.
+  You can use <span class="i-ph:markdown-logo-bold"></span> **Markdown** inside.
+</Aside>
+
+## Variants
+
+Supported values for `type`:
+
+<Aside type="note">
+  Note content
+</Aside>
+
+<Aside type="tip">
+  Tip content
+</Aside>
+
+<Aside type="caution">
+  Caution content
+</Aside>
+
+<Aside type="danger">
+  Danger content
+</Aside>
+
+<style>{`
+  .starlight-aside--tip {
+    --sl-color-asides-text-accent: var(--sl-color-purple-high);
+    --sl-color-asides-border: var(--sl-color-purple);
+    background-color: var(--sl-color-purple-low);
+  }
+`}</style>
+
+## Customization
+
+You can override the icon via the `icon` prop or rely on the default for each type.
+
+### Props
+
+- `type?` one of `note | tip | caution | danger` (default: `note`)
+- `title?` string — text label and visible heading (defaults to a localized title by type)
+- `icon?` string — Iconify class (overrides the default type icon)
+
+### Example
+
+Starlight also allows using CSS variables to customize the aside component.
+
+```mdx title="page.mdx"
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+
+<Aside type="tip" icon="i-ph:lightbulb-duotone">Custom icon</Aside>
+```
+
+```css title="src/styles/custom.css"
+.starlight-aside--tip {
+  --sl-color-asides-text-accent: var(--sl-color-green-high);
+  --sl-color-asides-border: var(--sl-color-green);
+  background-color: var(--sl-color-green-low);
+}
+```
+
+Rendered
+
+<Aside class="demo-aside" type="tip" icon="i-ph:lightbulb-duotone">Custom icon</Aside>
+
+<style>{`
+  .demo-aside {
+    --sl-color-asides-text-accent: var(--sl-color-green-high);
+    --sl-color-asides-border: var(--sl-color-green);
+    background-color: var(--sl-color-green-low);
+  }
+`}</style>

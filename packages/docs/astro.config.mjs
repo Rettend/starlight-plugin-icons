@@ -53,9 +53,10 @@ export default defineConfig({
           {
             label: 'Components',
             items: [
-              { icon: 'i-ph:rectangle-duotone', label: 'Card', slug: 'components/card' },
-              { icon: 'i-ph:files-duotone', label: 'FileTree', slug: 'components/file-tree' },
-              { icon: 'i-ph:link-simple-duotone', label: 'IconLink', slug: 'components/icon-link' },
+              { icon: 'i-ph:chat-dots-duotone', label: 'Aside', slug: 'components/aside' },
+              { icon: 'i-ph:cards-duotone', label: 'Card', slug: 'components/card' },
+              { icon: 'i-ph:tree-view-duotone', label: 'FileTree', slug: 'components/file-tree' },
+              { icon: 'i-ph:sticker-duotone', label: 'IconLink', slug: 'components/icon-link' },
             ],
           },
           {

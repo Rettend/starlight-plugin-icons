@@ -4,52 +4,93 @@ description: A simple icon-first link card component.
 ---
 
 import IconLink from 'starlight-plugin-icons/components/IconLink.astro'
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
 
 Example source
 
-````mdx
----
+```mdx title="page.mdx" "flat"
 import IconLink from 'starlight-plugin-icons/components/IconLink.astro'
----
 
-<IconLink href="/getting-started/installation/" icon="i-ph:package-duotone" title="Install" />
-````
+<IconLink href="#" icon="i-ph:thumbs-up-duotone" title="Link" flat />
+```
 
 Rendered
 
-Variants: Icon only
-
 <div class="row">
-  <IconLink href="#" icon="i-ph:rocket-duotone" />
-  <IconLink href="#" icon="i-ph:rocket-duotone" flat />
+  <IconLink href="#" icon="i-ph:thumbs-up-duotone" title="Link" />
+  <IconLink href="#" icon="i-ph:thumbs-up-duotone" title="Link" flat />
 </div>
 
-Variants: Icon + text
+<Aside type="tip" icon="i-ph:lightbulb-duotone">
+  Use the `flat` prop to make the design simpler.
+</Aside>
+
+## Variants
+
+Icon only
 
 <div class="row">
-  <IconLink href="#" icon="i-ph:sparkle-duotone" title="Shiny" />
-  <IconLink href="#" icon="i-ph:sparkle-duotone" title="Shiny" flat />
+  <IconLink icon="i-ph:gift-duotone" />
+  <IconLink icon="i-ph:gift-duotone" flat />
 </div>
 
-Variants: Icon + text + href
+Icon + text
 
 <div class="row">
-  <IconLink href="https://example.com" icon="i-ph:link-simple-duotone" title="External" />
-  <IconLink href="https://example.com" icon="i-ph:link-simple-duotone" title="External" flat />
+  <IconLink icon="i-ph:rocket-duotone" title="Text" />
+  <IconLink icon="i-ph:rocket-duotone" title="Text" flat />
 </div>
 
-Customization (scoped)
+Icon + text + href
+
+<div class="row">
+  <IconLink href="https://example.com" icon="i-ph:github-logo-duotone" title="Link" />
+  <IconLink href="https://example.com" icon="i-ph:github-logo-duotone" title="Link" flat />
+</div>
+
+## Customization
+
+### Props
+
+- `icon` string — icon class
+- `href?` string — destination URL
+- `title?` string — label shown under the icon; if omitted, slot content is used
+- `flat?` boolean — use a simpler design
+
+
+### CSS variables
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-iconlink-width: 10rem;
+  --spi-iconlink-height: 9rem;
+  --spi-iconlink-gap: 0.75rem;
+  --spi-iconlink-icon-size: 3.25rem;
+  --spi-iconlink-pad: 0.875rem;
+  --spi-iconlink-radius: 0.375rem;
+}
+```
+
+### Example
 
 Smaller, icon-only, round
 
+```css title="src/styles/custom.css"
+.demo-iconlink-round {
+  --spi-iconlink-width: 4.5rem;
+  --spi-iconlink-height: 4.5rem;
+  --spi-iconlink-gap: 0.25rem;
+  --spi-iconlink-icon-size: 2rem;
+  --spi-iconlink-pad: 0.5rem;
+  --spi-iconlink-radius: 9999px;
+}
+```
+
+Rendered
+
 <div class="demo-iconlink-round row">
-  <IconLink href="#" icon="i-ph:heart-duotone" />
-  <IconLink href="#" icon="i-ph:star-duotone" />
-  <IconLink href="#" icon="i-ph:lightning-duotone" />
-  <IconLink href="#" icon="i-ph:heart-duotone" flat />
-  <IconLink href="#" icon="i-ph:star-duotone" flat />
-  <IconLink href="#" icon="i-ph:lightning-duotone" flat />
-  
+  <IconLink icon="i-ph:heart-duotone" />
+  <IconLink icon="i-ph:lightning-duotone" flat />
 </div>
 
 <style>{`
@@ -62,24 +103,4 @@ Smaller, icon-only, round
     --spi-iconlink-radius: 9999px;
   }
 `}</style>
-
-Props
-
-- `href` string — destination URL
-- `icon` string — Iconify class (e.g. `i-ph:*`)
-- `title?` string — label shown under the icon
-- `flat?` boolean — use a simpler, bordered style
-
-CSS variables
-
-```css
-:root {
-  --spi-iconlink-width: 10rem;
-  --spi-iconlink-height: 9rem;
-  --spi-iconlink-gap: 0.75rem;
-  --spi-iconlink-icon-size: 3.25rem;
-  --spi-iconlink-pad: 0.875rem;
-  --spi-iconlink-radius: 0.375rem;
-}
-```
 

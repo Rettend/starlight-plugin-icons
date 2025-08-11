@@ -5,9 +5,8 @@ description: Add icons to Starlight's sidebar entries.
 
 import { Image } from 'astro:assets'
 import sidebarDemo from '~/assets/demo/sidebar.png'
-import Aside from 'starlight-plugin-icons/components/Aside.astro'
 import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
-
+import Link from '~/components/Link.astro'
 
 <Steps>
 
@@ -67,32 +66,32 @@ import { Tabs, TabItem, Steps } from '@astrojs/starlight/components'
 
 3. ##### Install an Icon collection
 
-    Choose any collection (e.g. `ph`). See the <a href="https://icones.js.org/">Icon Gallery</a>.
+    Choose any collection. See the <Link href="https://icones.js.org/">Icon Gallery</Link>.
 
     <Tabs syncKey="pkg-any-collection">
       <TabItem label="npm">
         ```sh
-        npm i -D @iconify-json/ph
+        npm i -D @iconify-json/{collection}
         ```
       </TabItem>
       <TabItem label="pnpm">
         ```sh
-        pnpm add -D @iconify-json/ph
+        pnpm add -D @iconify-json/{collection}
         ```
       </TabItem>
       <TabItem label="yarn">
         ```sh
-        yarn add -D @iconify-json/ph
+        yarn add -D @iconify-json/{collection}
         ```
       </TabItem>
       <TabItem label="bun">
         ```sh
-        bun add -D @iconify-json/ph
+        bun add -D @iconify-json/{collection}
         ```
       </TabItem>
       <TabItem label="ni">
         ```sh
-        ni -D @iconify-json/ph
+        ni -D @iconify-json/{collection}
         ```
       </TabItem>
     </Tabs>
@@ -126,12 +125,7 @@ Rendered
 
 <Image src={sidebarDemo} alt="Sidebar with icon" />
 
-<Aside type="note">
-  - Install the Iconify collection you use: [Icon Gallery](https://icones.js.org/).
-  - Want to tweak spacing or sizes? See [Configuration](./guides/configuration).
-</Aside>
-
-## Customize
+## Customization
 
 Set CSS variables to configure sidebar icon size and spacing.
 

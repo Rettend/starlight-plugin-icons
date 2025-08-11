@@ -1,40 +1,68 @@
 ---
 title: FileTree Component
-description: Component that renders an accessible file tree with icons.
+description: Component that renders a file tree with icons.
 ---
 
 import FileTree from 'starlight-plugin-icons/components/FileTree.astro'
 
 Example source
 
-````mdx
+```mdx title="page.mdx"
 import FileTree from 'starlight-plugin-icons/components/FileTree.astro'
 
 <FileTree>
-  - src/
-    - pages/
+  - src
+    - pages
       - index.astro
-  - package.json an **important** file <span class="i-ph:warning-duotone"></span>
+    - empty/
+  - **TODO.md** <span class="i-ph:warning-bold"></span> **important** file 
+  - package.json the <span class="i-material-icon-theme:nodejs"></span> package.json file
 </FileTree>
-````
+```
 
 Rendered
 
 <FileTree>
-  - docs/
-    - components/
-      - file-tree.mdx
-  - **uno.config.ts** the <span class="i-logos:unocss"></span> UnoCSS file!
-  - package.json an **important** file <span class="i-ph:warning-duotone"></span>
+  - src
+    - pages
+      - index.astro
+    - empty/
+  - **TODO.md** <span class="i-ph:warning-bold"></span> **important** file 
+  - package.json the <span class="i-material-icon-theme:nodejs"></span> package.json file
 </FileTree>
 
-Customization (scoped)
+### Rules
+
+- Directories end with `/` or contain nested items.
+- `**README.md**` highlights an entry.
+- Text after the name becomes a comment: ``README.md important``.
+
+## Customization
+
+### CSS variables
+
+```css title="src/styles/custom.css"
+:root {
+--spi-filetree-icon-size: 1.1rem;
+--spi-filetree-icon-gap: 0.25rem;
+}
+```
+
+### Example
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-filetree-icon-size: 1.2rem;
+  --spi-filetree-icon-gap: 0.5rem;
+}
+```
+
+Rendered
 
 <div class="demo-filetree-custom">
   <FileTree>
-    - src/
-      - routes/
-        - index.ts
+    - src
+      - index.ts
     - README.md
   </FileTree>
 </div>
@@ -45,22 +73,3 @@ Customization (scoped)
     --spi-filetree-icon-gap: 0.5rem;
   }
 `}</style>
-
-Authoring rules
-
-- Directories end with `/` or contain nested lists.
-- `**README.md**` highlights an entry.
-- Text after the name becomes a comment: ``README.md important``.
-
-Accessibility
-
-- Directories include an SR-only label for screen readers.
-
-CSS variables
-
-```css
-/* File tree */
---spi-filetree-icon-size: 1.1rem;
---spi-filetree-icon-gap: 0.25rem;
-```
-

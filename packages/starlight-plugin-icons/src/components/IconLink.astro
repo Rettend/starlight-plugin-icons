@@ -1,7 +1,7 @@
 ---
 interface Props {
-  href: string
   icon: string
+  href?: string
   title?: string
   flat?: boolean
 }
@@ -64,10 +64,10 @@ const { href, icon, title, flat = false } = Astro.props
     border: 1px solid transparent;
     background-origin: border-box;
     background-image:
-      linear-gradient(to top in oklab, oklch(92.2% 0 0 / 5%) 0%, oklch(17% 0 0) 2%),
-      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-5) 17%, transparent), var(--sl-color-gray-5));
+      linear-gradient(to top in oklab, oklch(92.2% 0 0 / 5%) 0%, oklch(19% 0 0) 50%),
+      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-5) 30%, transparent), var(--sl-color-gray-5));
     background-clip: padding-box, border-box;
-    box-shadow: 0 1px 2px 0 #0000000d;
+    box-shadow: 0 2px 5px -3px #ffffff50;
   }
 
   html[data-theme='light'] .icon-link-card.enhanced {
@@ -81,7 +81,7 @@ const { href, icon, title, flat = false } = Astro.props
       ),
       linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-6) 17%, transparent), var(--sl-color-gray-6));
     background-clip: padding-box, border-box;
-    box-shadow: 0 1px 2px 0 #0000000d;
+    box-shadow: 0 2px 5px -3px #ffffff50;
     color: var(--sl-color-gray-5);
   }
 

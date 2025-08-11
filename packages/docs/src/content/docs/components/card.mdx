@@ -3,57 +3,72 @@ title: Card
 description: A content card with optional icon and style variables.
 ---
 
+import { CardGrid } from '@astrojs/starlight/components'
 import Card from 'starlight-plugin-icons/components/Card.astro'
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
 
 Example source
 
-````mdx
----
+```mdx title="page.mdx" "bordered"
 import Card from 'starlight-plugin-icons/components/Card.astro'
----
 
-<Card title="Code Block Icons" icon="i-ph:code-block-duotone" bordered>
-  Automatically display language icons in captions.
+<Card title="Card" icon="i-ph:thumbs-up-duotone" bordered>
+  Card description
 </Card>
-````
+```
 
 Rendered
 
-<div class="row">
-  <Card title="Sidebar & Card Icons" icon="i-ph:popsicle-duotone" bordered>
-    Add icon classes to content cards or sidebar links.
+<CardGrid>
+  <Card title="Card" icon="i-ph:thumbs-up-duotone">
+    Simple card
   </Card>
-  <Card title="Iconify Support" icon="i-ph:puzzle-piece-duotone">
-    Use 200k+ icons with UnoCSS and Iconify.
+  <Card title="Card" icon="i-ph:thumbs-up-duotone" bordered>
+    Card with icon border
   </Card>
-</div>
+</CardGrid>
 
-Customization (scoped)
+<Aside type="tip" icon="i-ph:lightbulb-duotone">
+  Use the `bordered` prop to add back the colored icon border.
+</Aside>
 
-<div class="demo-card-custom row">
-  <Card title="Bigger Icon" icon="i-ph:smiley-wink-duotone" bordered>
-    Tweaked icon and wrapper sizing.
+## Customization
+
+### Props
+
+- `title` string — card title
+- `icon?` string — icon class
+- `bordered?` boolean — show icon in a colored square
+
+### CSS variables
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-card-icon-size: 1em;
+  --spi-card-icon-wrapper-pad: 0.3em;
+}
+```
+
+### Example
+
+```css title="src/styles/custom.css"
+:root {
+  --spi-card-icon-size: 1.5em;
+  --spi-card-icon-wrapper-pad: 0.5em;
+}
+```
+
+Rendered
+
+<div class="demo-card">
+  <Card title="Bigger Icon" icon="i-ph:thumbs-up-duotone" bordered>
+    Tweaked icon and border padding
   </Card>
 </div>
 
 <style>{`
-  .demo-card-custom {
-    --spi-card-icon-size: 1.35em;
-    --spi-card-icon-wrapper-pad: 0.45em;
+  .demo-card {
+    --spi-card-icon-size: 1.5em;
+    --spi-card-icon-wrapper-pad: 0.5em;
   }
 `}</style>
-
-Props
-
-- `title` string — card title (supports HTML via `set:html`)
-- `icon?` string — Iconify class
-- `bordered?` boolean — show icon in a colored square
-
-CSS variables
-
-```css
-/* Card */
---spi-card-icon-size: 1.1em;
---spi-card-icon-wrapper-pad: 0.3em;
-```
-
