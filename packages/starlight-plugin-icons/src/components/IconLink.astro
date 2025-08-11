@@ -43,7 +43,8 @@ const { href, icon, title, flat = false, class: className } = Astro.props
     transition:
       background-color 0.2s,
       box-shadow 0.2s,
-      border-color 0.2s;
+      border-color 0.2s,
+      color 0.2s;
     background-color: transparent;
     width: var(--spi-iconlink-width, 9rem);
     height: var(--spi-iconlink-height, 8rem);
@@ -68,10 +69,18 @@ const { href, icon, title, flat = false, class: className } = Astro.props
     border: 1px solid transparent;
     background-origin: border-box;
     background-image:
-      linear-gradient(to top in oklab, oklch(92.2% 0 0 / 5%) 0%, oklch(19% 0 0) 50%),
-      linear-gradient(to top, color-mix(in oklab, var(--sl-color-gray-5) 30%, transparent), var(--sl-color-gray-5));
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--sl-color-black) 5%, transparent) 0%,
+        color-mix(in oklab, var(--sl-color-black) 60%, transparent) 50%
+      ),
+      linear-gradient(
+        to top,
+        color-mix(in oklab, var(--sl-color-gray-5) 75%, transparent),
+        color-mix(in oklab, var(--sl-color-gray-5) 100%, transparent)
+      );
     background-clip: padding-box, border-box;
-    box-shadow: 0 2px 5px -3px #ffffff50;
+    box-shadow: 0 2px 5px -3px var(--sl-color-gray-5);
   }
 
   html[data-theme='light'] .starlight-iconlink--enhanced {
@@ -122,7 +131,9 @@ const { href, icon, title, flat = false, class: className } = Astro.props
   }
 
   .starlight-iconlink:hover .starlight-iconlink__title,
-  .starlight-iconlink:focus .starlight-iconlink__title {
+  .starlight-iconlink:focus .starlight-iconlink__title,
+  .starlight-iconlink:hover .starlight-iconlink__icon,
+  .starlight-iconlink:focus .starlight-iconlink__icon {
     color: var(--sl-color-white);
   }
 
@@ -133,6 +144,7 @@ const { href, icon, title, flat = false, class: className } = Astro.props
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--sl-color-gray-1);
   }
 
   .starlight-iconlink__icon span {
