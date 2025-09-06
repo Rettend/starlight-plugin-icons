@@ -57,7 +57,7 @@ You can override the icon via the `icon` prop or rely on the default for each ty
 
 ### Props
 
-- `type?` one of `note | tip | caution | danger` (default: `note`)
+- `type?` one of `note | tip | caution | danger | (string & {})` (default: `note`)
 - `title?` string — text label and visible heading (defaults to a localized title by type)
 - `icon?` string — Iconify class (overrides the default type icon)
 - `class?` string — additional CSS classes
@@ -97,5 +97,55 @@ Rendered
     --sl-color-asides-text-accent: var(--sl-color-green-high);
     --sl-color-asides-border: var(--sl-color-green);
     background-color: var(--sl-color-green-low);
+  }
+`}</style>
+
+## Custom type
+
+`<Aside>` doesn't throw when you use an invalid type, instead it will treat it as a custom type.
+
+```mdx title="page.mdx"
+import Aside from 'starlight-plugin-icons/components/Aside.astro'
+
+<Aside type="tldr" icon="i-ph:bookmark-simple-duotone" title="TL;DR">
+  summary
+</Aside>
+```
+
+```css title="src/styles/custom.css"
+:root,
+::backdrop {
+  --sl-hue-yellow: 56;
+  --sl-color-yellow-low: hsl(var(--sl-hue-yellow), 39%, 22%);
+  --sl-color-yellow: hsl(var(--sl-hue-yellow), 82%, 63%);
+  --sl-color-yellow-high: hsl(var(--sl-hue-yellow), 82%, 87%);
+}
+
+.starlight-aside--tldr {
+  --sl-color-asides-text-accent: var(--sl-color-yellow-high);
+  --sl-color-asides-border: var(--sl-color-yellow);
+  background-color: var(--sl-color-yellow-low);
+}
+```
+
+Rendered
+
+<Aside type="tldr" icon="i-ph:bookmark-simple-duotone" title="TL;DR">
+  summary
+</Aside>
+
+<style>{`
+  :root,
+  ::backdrop {
+		--sl-hue-yellow: 56;
+		--sl-color-yellow-low: hsl(var(--sl-hue-yellow), 39%, 22%);
+		--sl-color-yellow: hsl(var(--sl-hue-yellow), 82%, 63%);
+		--sl-color-yellow-high: hsl(var(--sl-hue-yellow), 82%, 87%);
+	}
+
+  .starlight-aside--tldr {
+    --sl-color-asides-text-accent: var(--sl-color-yellow-high);
+    --sl-color-asides-border: var(--sl-color-yellow);
+    background-color: var(--sl-color-yellow-low);
   }
 `}</style>
