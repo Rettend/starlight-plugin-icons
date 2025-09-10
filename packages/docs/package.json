@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "bun@1.2.20",
+  "packageManager": "bun@1.2.21",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.35.2",
-    "astro": "^5.12.9",
+    "astro": "^5.13.7",
     "sharp": "^0.34.3",
     "starlight-plugin-icons": "workspace:*",
     "typescript": "^5.9.2",
@@ -25,9 +25,9 @@
   },
   "devDependencies": {
     "@fontsource/inter": "^5.2.6",
-    "@iconify-json/material-icon-theme": "^1.2.21",
+    "@iconify-json/material-icon-theme": "^1.2.27",
     "@iconify-json/ph": "^1.2.2",
-    "unocss": "^66.4.2"
+    "unocss": "^66.5.1"
   },
   "prettier": {
     "singleQuote": true,

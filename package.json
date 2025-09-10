@@ -2,7 +2,7 @@
   "name": "starlight-plugin-icons-monorepo",
   "type": "module",
   "private": true,
-  "packageManager": "bun@1.2.20",
+  "packageManager": "bun@1.2.21",
   "workspaces": [
     "packages/*"
   ],
@@ -16,9 +16,9 @@
     "release": "bumpp packages/starlight-plugin-icons/package.json && npm publish --workspace starlight-plugin-icons"
   },
   "devDependencies": {
-    "@iconify-json/devicon": "^1.2.41",
+    "@iconify-json/devicon": "^1.2.43",
     "@iconify-json/logos": "^1.2.9",
-    "bumpp": "^10.2.2",
-    "taze": "^19.1.0"
+    "bumpp": "^10.2.3",
+    "taze": "^19.6.0"
   }
 }

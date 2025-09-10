@@ -10,7 +10,7 @@ import { StarlightIconsOptionsSchema } from './types'
 
 export { pluginIcon } from './lib/expressive-code'
 export { withSidebarIcons } from './lib/sidebar'
-export type { SidebarGroupInput, SidebarInput, SidebarLinkInput } from './lib/sidebar'
+export type { SidebarInput, SidebarLinkInput } from './lib/sidebar'
 
 export function starlightIconsPlugin(options: StarlightIconsOptions = {}): StarlightPlugin {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
