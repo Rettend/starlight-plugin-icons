@@ -5,12 +5,12 @@ import process from 'node:process'
 import starlight from '@astrojs/starlight'
 import { pluginIcon } from './lib/expressive-code'
 import { generateSafelist } from './lib/safelist'
-import { withSidebarIcons } from './lib/sidebar'
+import { defineSidebar } from './lib/sidebar'
 import { StarlightIconsOptionsSchema } from './types'
 
 export { pluginIcon } from './lib/expressive-code'
-export { withSidebarIcons } from './lib/sidebar'
-export type { SidebarInput, SidebarLinkInput } from './lib/sidebar'
+export { defineSidebar, withSidebarIcons } from './lib/sidebar'
+export type { SidebarInput, SidebarLinkInput, StarlightSidebar } from './lib/sidebar'
 
 export function starlightIconsPlugin(options: StarlightIconsOptions = {}): StarlightPlugin {
   const parsedOptions = StarlightIconsOptionsSchema.parse(options)
@@ -75,7 +75,7 @@ export default function Icons(options: StarlightPluginIconsPresetOptions = {}): 
   const starlightBase = (starlightOptions ?? {}) as StarlightUserConfigWithIcons
   const starlightWithIcons = starlight({
     ...starlightBase,
-    sidebar: starlightBase.sidebar ? withSidebarIcons(starlightBase.sidebar) : undefined,
+    sidebar: starlightBase.sidebar ? defineSidebar(starlightBase.sidebar) : undefined,
     plugins: [
       ...(starlightBase.plugins ?? []),
       starlightIconsPlugin(iconsOptions),
