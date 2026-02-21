@@ -34,6 +34,11 @@ function flattenSidebar(entries: SidebarEntry[]): SidebarEntry[] {
     return acc
   }, [])
 }
+
+function stripLabelFlag(attrs: Record<string, any> = {}) {
+  const { 'data-spi-label': _ignored, ...rest } = attrs
+  return rest
+}
 ---
 
 <ul class:list={{ 'top-level': !nested }}>
@@ -41,18 +46,35 @@ function flattenSidebar(entries: SidebarEntry[]): SidebarEntry[] {
     sublist.map((entry) => (
       <li>
         {entry.type === 'link' ? (
-          <a
-            href={entry.href}
-            aria-current={entry.isCurrent && 'page'}
-            class:list={[{ large: !nested, 'flex items-center': entry.attrs['data-icon'] }, entry.attrs.class]}
-            {...entry.attrs}
-          >
-            {entry.attrs['data-icon'] && <span class:list={[entry.attrs['data-icon'], 'sidebar-icon']} />}
-            <span>{entry.label}</span>
-            {entry.badge && <Badge variant={entry.badge.variant} class={entry.badge.class} text={entry.badge.text} />}
-          </a>
+          entry.attrs?.['data-spi-label'] === 'true' ? (
+            <span
+              class:list={[
+                { large: !nested, 'flex items-center': entry.attrs['data-icon'] },
+                entry.attrs.class,
+                'spi-label-item',
+              ]}
+              {...stripLabelFlag(entry.attrs)}
+            >
+              {entry.attrs['data-icon'] && <span class:list={[entry.attrs['data-icon'], 'sidebar-icon']} />}
+              <span>{entry.label}</span>
+              {entry.badge && <Badge variant={entry.badge.variant} class={entry.badge.class} text={entry.badge.text} />}
+            </span>
+          ) : (
+            <a
+              href={entry.href}
+              aria-current={entry.isCurrent && 'page'}
+              class:list={[{ large: !nested, 'flex items-center': entry.attrs['data-icon'] }, entry.attrs.class]}
+              {...entry.attrs}
+            >
+              {entry.attrs['data-icon'] && <span class:list={[entry.attrs['data-icon'], 'sidebar-icon']} />}
+              <span>{entry.label}</span>
+              {entry.badge && <Badge variant={entry.badge.variant} class={entry.badge.class} text={entry.badge.text} />}
+            </a>
+          )
         ) : (
-          <details open={flattenSidebar(entry.entries).some((i: any) => i.isCurrent) || !entry.collapsed}>
+          <details
+            open={flattenSidebar(entry.entries).some((i) => i.type === 'link' && i.isCurrent) || !entry.collapsed}
+          >
             <summary>
               <div class="group-label">
                 <span class="large">{entry.label}</span>
@@ -154,8 +176,18 @@ function flattenSidebar(entries: SidebarEntry[]): SidebarEntry[] {
     }
 
     a > *:not(:last-child),
-    .group-label > *:not(:last-child) {
+    .group-label > *:not(:last-child),
+    .spi-label-item > *:not(:last-child) {
       margin-inline-end: 0.25em;
+    }
+
+    .spi-label-item {
+      display: flex;
+      align-items: center;
+      padding: 0.3em var(--sl-sidebar-item-padding-inline);
+      line-height: 1.4;
+      color: var(--sl-color-white);
+      font-weight: 600;
     }
 
     @media (min-width: 50rem) {

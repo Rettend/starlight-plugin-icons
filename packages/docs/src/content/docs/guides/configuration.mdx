@@ -27,6 +27,35 @@ export default {
 }
 ```
 
+If you use `starlight-sidebar-topics`, wrap each topic `items` array with `defineSidebar()`.
+
+```js title="astro.config.mjs"
+import Icons, { defineSidebar } from 'starlight-plugin-icons'
+import starlightSidebarTopics from 'starlight-sidebar-topics'
+
+export default {
+  integrations: [
+    Icons({
+      sidebar: true,
+      starlight: {
+        plugins: [
+          starlightSidebarTopics([
+            {
+              label: 'Docs',
+              link: '/getting-started/introduction/',
+              items: defineSidebar([
+                { icon: 'i-ph:hand-waving-duotone', label: 'Introduction', slug: 'getting-started/introduction' },
+                { icon: 'i-ph:planet-duotone', label: 'Section Label' },
+              ]),
+            },
+          ]),
+        ],
+      },
+    }),
+  ],
+}
+```
+
 Or specify the Astro integration and the Starlight plugin manually.
 
 ```js title="astro.config.mjs"

@@ -1,10 +1,53 @@
 ---
+import type { StarlightIcon } from '@astrojs/starlight/types'
+import { Badge, Icon } from '@astrojs/starlight/components'
 import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro'
 import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro'
 import SidebarSublist from './SidebarSublist.astro'
 
-const { sidebar } = Astro.locals.starlightRoute
+const { hasSidebar, sidebar } = Astro.locals.starlightRoute
+
+type SidebarTopic = {
+  badge?: { text: string; variant?: 'note' | 'danger' | 'success' | 'caution' | 'tip' | 'default' }
+  icon?: StarlightIcon
+  isCurrent: boolean
+  label: string
+  link: string
+}
+
+const sidebarTopics = (
+  Astro.locals as {
+    starlightSidebarTopics?: { isPageWithTopic?: boolean; topics?: SidebarTopic[] }
+  }
+).starlightSidebarTopics
+
+const topics = Array.isArray(sidebarTopics?.topics) ? sidebarTopics.topics : []
+const showTopics = hasSidebar && sidebarTopics?.isPageWithTopic && topics.length > 0
 ---
+
+{
+  showTopics && (
+    <ul class="starlight-sidebar-topics">
+      {topics.map((topic) => (
+        <li>
+          <a href={topic.link} class:list={{ 'starlight-sidebar-topics-current': topic.isCurrent }}>
+            {topic.icon && (
+              <div class="starlight-sidebar-topics-icon">
+                <Icon name={topic.icon} />
+              </div>
+            )}
+            <div>
+              {topic.label}
+              {topic.badge && (
+                <Badge class="starlight-sidebar-topics-badge" text={topic.badge.text} variant={topic.badge.variant} />
+              )}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 <SidebarPersister>
   <SidebarSublist sublist={sidebar} />
@@ -13,3 +56,69 @@ const { sidebar } = Astro.locals.starlightRoute
 <div class="md:sl-hidden">
   <MobileMenuFooter />
 </div>
+
+<style>
+  @layer starlight.core {
+    .starlight-sidebar-topics {
+      list-style: none;
+      padding: 0;
+    }
+
+    .starlight-sidebar-topics::after {
+      content: '';
+      display: block;
+      margin-top: 1rem;
+      height: 1px;
+      border-top: 1px solid var(--sl-color-hairline-light);
+    }
+
+    .starlight-sidebar-topics li {
+      overflow-wrap: anywhere;
+    }
+
+    .starlight-sidebar-topics li + li {
+      margin-top: 0.25rem;
+    }
+
+    .starlight-sidebar-topics a {
+      align-items: center;
+      color: var(--sl-color-white);
+      display: flex;
+      font-size: var(--sl-text-base);
+      font-weight: 600;
+      gap: 0.5rem;
+      line-height: 1.5;
+      padding: 0.3em 0.5rem;
+      text-decoration: none;
+    }
+
+    .starlight-sidebar-topics a:is(.starlight-sidebar-topics-current, :hover, :focus-visible) {
+      color: var(--sl-color-accent-high);
+    }
+
+    :global([data-theme='light']) .starlight-sidebar-topics a.starlight-sidebar-topics-current {
+      color: var(--sl-color-accent);
+    }
+
+    .starlight-sidebar-topics-icon {
+      align-items: center;
+      border-radius: 0.25rem;
+      border: 1px solid var(--sl-color-gray-4);
+      display: flex;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+
+    .starlight-sidebar-topics
+      a:is(.starlight-sidebar-topics-current, :hover, :focus-visible)
+      .starlight-sidebar-topics-icon {
+      background-color: var(--sl-color-text-accent);
+      border-color: var(--sl-color-text-accent);
+      color: var(--sl-color-text-invert);
+    }
+
+    .starlight-sidebar-topics-badge {
+      margin-inline-start: 0.25em;
+    }
+  }
+</style>
