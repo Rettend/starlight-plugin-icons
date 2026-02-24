@@ -30,9 +30,27 @@
         "unocss": "^66.5.1",
       },
     },
+    "packages/playground": {
+      "name": "playground",
+      "version": "0.0.1",
+      "dependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@astrojs/starlight": "^0.35.2",
+        "astro": "^5.13.7",
+        "starlight-plugin-icons": "workspace:*",
+        "starlight-sidebar-topics": "^0.6.2",
+        "starlight-sidebar-topics-dropdown": "^0.5.4",
+        "typescript": "^5.9.2",
+        "zod": "3.22.4",
+      },
+      "devDependencies": {
+        "@iconify-json/ph": "^1.2.2",
+        "unocss": "^66.5.1",
+      },
+    },
     "packages/starlight-plugin-icons": {
       "name": "starlight-plugin-icons",
-      "version": "1.1.4",
+      "version": "1.1.5",
       "dependencies": {
         "glob": "^11.0.3",
         "hast-util-select": "^6.0.4",
@@ -1290,6 +1308,8 @@
 
     "pkg-types": ["pkg-types@2.2.0", "", { "dependencies": { "confbox": "^0.2.2", "exsolve": "^1.0.7", "pathe": "^2.0.3" } }, "sha512-2SM/GZGAEkPp3KWORxQZns4M+WSeXbC2HEvmOIJe3Cmiv6ieAJvdVhDldtHqM5J1Y7MrR1XhkBT/rMlhh9FdqQ=="],
 
+    "playground": ["playground@workspace:packages/playground"],
+
     "pluralize": ["pluralize@8.0.0", "", {}, "sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA=="],
 
     "pnpm-workspace-yaml": ["pnpm-workspace-yaml@1.1.1", "", { "dependencies": { "yaml": "^2.8.1" } }, "sha512-nGBB7h3Ped3g9dBrR6d3YNwXCKYsEg8K9J3GMmSrwGEXq3RHeGW44/B4MZW51p4FRMnyxJzTY5feSBbUjRhIHQ=="],
@@ -1447,6 +1467,10 @@
     "spdx-license-ids": ["spdx-license-ids@3.0.22", "", {}, "sha512-4PRT4nh1EImPbt2jASOKHX7PB7I+e4IWNLvkKFDxNhJlfjbYlleYQh285Z/3mPTHSAK/AvdMmw5BNNuYH8ShgQ=="],
 
     "starlight-plugin-icons": ["starlight-plugin-icons@workspace:packages/starlight-plugin-icons"],
+
+    "starlight-sidebar-topics": ["starlight-sidebar-topics@0.6.2", "", { "dependencies": { "picomatch": "^4.0.2" }, "peerDependencies": { "@astrojs/starlight": ">=0.32.0" } }, "sha512-SNCTUZS/hcVor0ZcaXbaSVU37+V+qtvzNirkvnOg3Mqu/awuGpthkH5+uKpiZqWxLffp6TrOlsv5E5QsxrndNg=="],
+
+    "starlight-sidebar-topics-dropdown": ["starlight-sidebar-topics-dropdown@0.5.4", "", { "peerDependencies": { "@astrojs/starlight": ">=0.32", "starlight-sidebar-topics": ">=0.6" } }, "sha512-6a9rTqvugvHGgMuGq8IpAoxQn6EQbZpJC/pSXICsuKqHVIUgJQRsvRmRAiUw4ULiNKA74FQ0mOQg3ubQGqJkVQ=="],
 
     "stream-replace-string": ["stream-replace-string@2.0.0", "", {}, "sha512-TlnjJ1C0QrmxRNrON00JvaFFlNh5TTG00APw23j74ET7gkQpTASi6/L2fuiav8pzK715HXtUeClpBTw2NPSn6w=="],
 

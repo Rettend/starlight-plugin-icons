@@ -1,10 +1,5 @@
 ---
 import { Badge, Icon } from '@astrojs/starlight/components'
-import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro'
-import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro'
-import SidebarSublist from './SidebarSublist.astro'
-
-const { hasSidebar, sidebar } = Astro.locals.starlightRoute
 
 type SidebarTopic = {
   badge?: { text: string; variant?: 'note' | 'danger' | 'success' | 'caution' | 'tip' | 'default' }
@@ -21,11 +16,11 @@ const sidebarTopics = (
 ).starlightSidebarTopics
 
 const topics = Array.isArray(sidebarTopics?.topics) ? sidebarTopics!.topics : []
-const showTopics = hasSidebar && sidebarTopics?.isPageWithTopic && topics.length > 0
+const show = sidebarTopics?.isPageWithTopic && topics.length > 0
 ---
 
 {
-  showTopics && (
+  show && (
     <ul class="starlight-sidebar-topics">
       {topics.map((topic) => (
         <li>
@@ -33,7 +28,7 @@ const showTopics = hasSidebar && sidebarTopics?.isPageWithTopic && topics.length
             {topic.icon && (
               <div class="starlight-sidebar-topics-icon">
                 {topic.icon.startsWith('i-') ? (
-                  <span class:list={[topic.icon, 'sidebar-topic-icon']} />
+                  <span class:list={[topic.icon, 'spi-topic-icon']} />
                 ) : (
                   <Icon name={topic.icon as import('@astrojs/starlight/types').StarlightIcon} />
                 )}
@@ -52,16 +47,15 @@ const showTopics = hasSidebar && sidebarTopics?.isPageWithTopic && topics.length
   )
 }
 
-<SidebarPersister>
-  <SidebarSublist sublist={sidebar} />
-</SidebarPersister>
-
-<div class="md:sl-hidden">
-  <MobileMenuFooter />
-</div>
-
 <style>
   @layer starlight.core {
+    .spi-topic-icon {
+      display: inline-block;
+      font-size: 1rem;
+      width: 1em;
+      height: 1em;
+    }
+
     .starlight-sidebar-topics {
       list-style: none;
       padding: 0;
@@ -122,13 +116,6 @@ const showTopics = hasSidebar && sidebarTopics?.isPageWithTopic && topics.length
 
     .starlight-sidebar-topics-badge {
       margin-inline-start: 0.25em;
-    }
-
-    .sidebar-topic-icon {
-      display: inline-block;
-      font-size: 1rem;
-      width: 1em;
-      height: 1em;
     }
   }
 </style>

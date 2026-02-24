@@ -27,35 +27,6 @@ export default {
 }
 ```
 
-If you use `starlight-sidebar-topics`, wrap each topic `items` array with `defineSidebar()`.
-
-```js title="astro.config.mjs"
-import Icons, { defineSidebar } from 'starlight-plugin-icons'
-import starlightSidebarTopics from 'starlight-sidebar-topics'
-
-export default {
-  integrations: [
-    Icons({
-      sidebar: true,
-      starlight: {
-        plugins: [
-          starlightSidebarTopics([
-            {
-              label: 'Docs',
-              link: '/getting-started/introduction/',
-              items: defineSidebar([
-                { icon: 'i-ph:hand-waving-duotone', label: 'Introduction', slug: 'getting-started/introduction' },
-                { icon: 'i-ph:planet-duotone', label: 'Section Label' },
-              ]),
-            },
-          ]),
-        ],
-      },
-    }),
-  ],
-}
-```
-
 Or specify the Astro integration and the Starlight plugin manually.
 
 ```js title="astro.config.mjs"
@@ -66,6 +37,103 @@ export default {
   integrations: [
     starlight({ plugins: [starlightIconsPlugin()] }),
     starlightIconsIntegration(),
+  ],
+}
+```
+
+## Using with `starlight-sidebar-topics`
+
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+Both this plugin and `starlight-sidebar-topics` need to override the `Sidebar` component.
+To make them work together, create a custom Sidebar that combines both.
+
+This plugin provides `SidebarSublist` for sidebar item icons, and `Topics`/`TopicsDropdown` for sidebar topics.
+
+### 1. Create a custom Sidebar
+
+<Tabs>
+  <TabItem label="Topic list">
+
+  ```astro title="src/components/starlight/Sidebar.astro"
+  ---
+  import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro'
+  import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro'
+  import SidebarSublist from 'starlight-plugin-icons/components/starlight/SidebarSublist.astro'
+  import Topics from 'starlight-plugin-icons/components/starlight/Topics.astro'
+
+  const { hasSidebar, sidebar } = Astro.locals.starlightRoute
+  ---
+
+  {hasSidebar && <Topics />}
+
+  <SidebarPersister>
+    <SidebarSublist sublist={sidebar} />
+  </SidebarPersister>
+
+  <div class="md:sl-hidden">
+    <MobileMenuFooter />
+  </div>
+  ```
+
+  </TabItem>
+  <TabItem label="Topic dropdown">
+
+  ```astro title="src/components/starlight/Sidebar.astro"
+  ---
+  import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro'
+  import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro'
+  import SidebarSublist from 'starlight-plugin-icons/components/starlight/SidebarSublist.astro'
+  import TopicsDropdown from 'starlight-plugin-icons/components/starlight/TopicsDropdown.astro'
+
+  const { hasSidebar, sidebar } = Astro.locals.starlightRoute
+  ---
+
+  {hasSidebar && <TopicsDropdown />}
+
+  <SidebarPersister>
+    <SidebarSublist sublist={sidebar} />
+  </SidebarPersister>
+
+  <div class="md:sl-hidden">
+    <MobileMenuFooter />
+  </div>
+  ```
+
+  </TabItem>
+</Tabs>
+
+### 2. Configure Starlight
+
+Point the `Sidebar` component to the custom one, and use `defineSidebar()` to wrap each topic's `items`.
+Topics support UnoCSS icons as well.
+
+```js title="astro.config.mjs" ins={1, 9-11} ins="defineSidebar([" ins="icon:"
+import Icons, { defineSidebar } from 'starlight-plugin-icons'
+import starlightSidebarTopics from 'starlight-sidebar-topics'
+
+export default {
+  integrations: [
+    Icons({
+      sidebar: true,
+      starlight: {
+        components: {
+          Sidebar: './src/components/starlight/Sidebar.astro',
+        },
+        plugins: [
+          starlightSidebarTopics([
+            {
+              label: 'Docs',
+              icon: 'i-ph:book-open-duotone',
+              link: '/getting-started/',
+              items: defineSidebar([
+                { icon: 'i-ph:hand-waving-duotone', label: 'Intro', slug: 'getting-started/intro' },
+              ]),
+            },
+          ]),
+        ],
+      },
+    }),
   ],
 }
 ```

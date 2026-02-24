@@ -1,0 +1,28 @@
+{
+  "name": "playground",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "bun@1.2.21",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "astro sync",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/starlight": "^0.35.2",
+    "astro": "^5.13.7",
+    "starlight-plugin-icons": "workspace:*",
+    "starlight-sidebar-topics": "^0.6.2",
+    "starlight-sidebar-topics-dropdown": "^0.5.4",
+    "typescript": "^5.9.2",
+    "zod": "3.22.4"
+  },
+  "devDependencies": {
+    "@iconify-json/ph": "^1.2.2",
+    "unocss": "^66.5.1"
+  }
+}

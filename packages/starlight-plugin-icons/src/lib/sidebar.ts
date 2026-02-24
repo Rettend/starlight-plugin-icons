@@ -1,7 +1,7 @@
 import type { StarlightUserConfig } from '@astrojs/starlight/types'
 
 interface CommonSidebarLinkInput {
-  label: string
+  label?: string
   attrs?: Record<string, any>
   badge?: any
   translations?: Record<string, string>
