@@ -1,0 +1,22 @@
+---
+import MobileMenuFooter from '@astrojs/starlight/components/MobileMenuFooter.astro'
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro'
+import SidebarSublist from 'starlight-plugin-icons/components/starlight/SidebarSublist.astro'
+import TopicsDropdown from 'starlight-plugin-icons/components/starlight/TopicsDropdown.astro'
+import Topics from 'starlight-plugin-icons/components/starlight/Topics.astro'
+
+// Toggle this to test list topics vs dropdown topics
+const useDropdown = false
+
+const { hasSidebar, sidebar } = Astro.locals.starlightRoute
+---
+
+{useDropdown ? hasSidebar && <TopicsDropdown /> : hasSidebar && <Topics />}
+
+<SidebarPersister>
+  <SidebarSublist sublist={sidebar} />
+</SidebarPersister>
+
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>

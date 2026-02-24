@@ -18,9 +18,18 @@ export function starlightIconsPlugin(options: StarlightIconsOptions = {}): Starl
     name: 'starlight-plugin-icons',
     hooks: {
       'config:setup': ({ config, updateConfig }) => {
-        const components: Record<string, string> = { ...(config.components || {}) }
+        const components: Record<string, string | undefined> = { ...(config.components || {}) }
         if (parsedOptions.sidebar) {
-          components.Sidebar = 'starlight-plugin-icons/components/starlight/Sidebar.astro'
+          if (components.Sidebar) {
+            console.warn(
+              `[starlight-plugin-icons] A custom Sidebar component is already configured (${components.Sidebar}). `
+              + `Skipping Sidebar override to avoid conflicts. `
+              + `To get sidebar icon support, import SidebarSublist from 'starlight-plugin-icons/components/starlight/SidebarSublist.astro' in your custom Sidebar component.`,
+            )
+          }
+          else {
+            components.Sidebar = 'starlight-plugin-icons/components/starlight/Sidebar.astro'
+          }
         }
 
         const customCss = Array.isArray(config.customCss) ? [...config.customCss] : []

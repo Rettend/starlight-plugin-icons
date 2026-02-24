@@ -118,6 +118,7 @@ export async function getMaterialIconsData(): Promise<MaterialIconsData | undefi
     if (error instanceof Error) {
       console.warn('Failed to fetch material icons data:', error.message)
     }
+    return undefined
   }
 }
 
