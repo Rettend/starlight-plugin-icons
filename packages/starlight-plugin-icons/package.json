@@ -1,7 +1,7 @@
 {
   "name": "starlight-plugin-icons",
   "type": "module",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "packageManager": "bun@1.2.21",
   "description": "Add icons to Astro Starlight: sidebar, codeblocks, file tree",
   "license": "MIT",
